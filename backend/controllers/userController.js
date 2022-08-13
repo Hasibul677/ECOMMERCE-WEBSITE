@@ -46,8 +46,7 @@ exports.loginUser = catchAsyncErrors(async (req, res, next) => {
   sendToken(user, 200, res);
 });
 
-//Logout Use
-
+// Logout Use
 exports.logout = catchAsyncErrors(async (req, res, next) => {
   res.cookie("token", null, {
     expires: new Date(Date.now()),
@@ -61,7 +60,6 @@ exports.logout = catchAsyncErrors(async (req, res, next) => {
 });
 
 // Forgot Password
-
 exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
   const user = await User.findOne({ email: req.body.email });
   if (!user) {
@@ -101,7 +99,6 @@ exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
 });
 
 // Reset Password
-
 exports.resetPassword = catchAsyncErrors(async (req, res, next) => {
   //Creating token hash
   const resetPasswordToken = crypto
@@ -132,7 +129,7 @@ exports.resetPassword = catchAsyncErrors(async (req, res, next) => {
   sendToken(user, 200, res);
 });
 
-//Get User Details
+// Get User Details
 exports.getUserDetails = catchAsyncErrors(async (req, res, next) => {
   const user = await User.findById(req.user.id);
 
@@ -142,7 +139,7 @@ exports.getUserDetails = catchAsyncErrors(async (req, res, next) => {
   });
 });
 
-//Update User Password
+// Update User Password
 exports.updatePassword = catchAsyncErrors(async (req, res, next) => {
   const user = await User.findById(req.user.id).select("+password");
   const isPasswordMatched = await user.comparePassword(req.body.oldPassword);
@@ -161,7 +158,7 @@ exports.updatePassword = catchAsyncErrors(async (req, res, next) => {
   sendToken(user, 200, res);
 });
 
-//Update User Profile
+// Update User Profile
 exports.updateProfile = catchAsyncErrors(async (req, res, next) => {
   const newUserData = {
     name: req.body.name,
@@ -226,6 +223,7 @@ exports.updateUserRole = catchAsyncErrors(async (req, res, next) => {
     user,
   });
 });
+
 // Delete User by Admin
 exports.deleteUser = catchAsyncErrors(async (req, res, next) => {
   const user = await User.findById(req.params.id);

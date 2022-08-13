@@ -3,7 +3,7 @@ const ErrorHander = require("../utils/errorHander");
 const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 const ApiFeatures = require("../utils/apiFeatures");
 
-//Create Product ------- Admin
+// Create Product ------- Admin
 exports.createProduct = catchAsyncErrors(async (req, res, next) => {
   req.body.user = req.user.id;
 
@@ -20,7 +20,7 @@ exports.createProduct = catchAsyncErrors(async (req, res, next) => {
   }
 });
 
-//Get All Product
+// Get All Product
 exports.getAllProduct = catchAsyncErrors(async (req, res, next) => {
   const resultPerPage = 5;
   const prodctCount = await Product.countDocuments();
@@ -41,7 +41,7 @@ exports.getAllProduct = catchAsyncErrors(async (req, res, next) => {
   }
 });
 
-//Get Product Details
+// Get Product Details
 exports.getProductDetails = catchAsyncErrors(async (req, res, next) => {
   let product = await Product.findById(req.params.id);
 
@@ -55,7 +55,7 @@ exports.getProductDetails = catchAsyncErrors(async (req, res, next) => {
   });
 });
 
-//Update Single Product -----Admin
+// Update Single Product -----Admin
 exports.updateProduct = catchAsyncErrors(async (req, res, next) => {
   let product = await Product.findById(req.params.id);
 
@@ -75,7 +75,7 @@ exports.updateProduct = catchAsyncErrors(async (req, res, next) => {
   });
 });
 
-//Delete Single Product -----Admin
+// Delete Single Product -----Admin
 exports.deleteProduct = catchAsyncErrors(async (req, res, next) => {
   let product = await Product.findById(req.params.id);
 

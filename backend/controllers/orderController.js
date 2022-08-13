@@ -4,7 +4,7 @@ const Order = require("../models/orderModel");
 const Product = require("../models/productModel");
 
 // Create New Order
-exports.newOrder = catchAsyncErrors(async (req, res, next) => {
+exports.newOrder = catchAsyncErrors(async (req, res) => {
   const {
     shippingInfo,
     orderItems,
@@ -53,7 +53,7 @@ exports.getSingleOrder = catchAsyncErrors(async (req, res, next) => {
 });
 
 // Get logged in user Orders
-exports.myOrders = catchAsyncErrors(async (req, res, next) => {
+exports.myOrders = catchAsyncErrors(async (req, res) => {
   const order = await Order.find({ user: req.user._id });
 
   res.status(200).json({
@@ -63,7 +63,7 @@ exports.myOrders = catchAsyncErrors(async (req, res, next) => {
 });
 
 // Get All Orders ----- Admin
-exports.getAllOrders = catchAsyncErrors(async (req, res, next) => {
+exports.getAllOrders = catchAsyncErrors(async (req, res) => {
   const orders = await Order.find();
 
   let totalAmount = 0;
@@ -81,6 +81,12 @@ exports.getAllOrders = catchAsyncErrors(async (req, res, next) => {
 // Update Orders Status ----- Admin
 exports.updateOrder = catchAsyncErrors(async (req, res, next) => {
   const order = await Order.findById(req.params.id);
+
+  if (!order) {
+    return next(
+      new ErrorHander(`Order not found with this id: ${req.params.id}`, 404)
+    );
+  }
 
   if (order.orderStatus === "Delivered") {
     return next(new ErrorHander("You have already delivered this order", 404));

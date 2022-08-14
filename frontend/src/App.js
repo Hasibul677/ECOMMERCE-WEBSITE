@@ -4,7 +4,7 @@ import Header from "./component/layout/Header/Header";
 import webFont from "webfontloader";
 import { useEffect } from "react";
 import Footer from "./component/layout/Footer/Footer";
-import Home from "./component/layout/Home/Home.js";
+import Home from "./component/Home/Home"
 
 function App() {
   useEffect(() => {

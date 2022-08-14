@@ -1,9 +1,11 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React from "react";
 import { Button, Col, Row } from "react-bootstrap";
 import "./Home.css";
-import home from "../../../images/home.png";
+import home from "../../images/home.png";
 import Product from "./Product";
 import { MdOutlineDirectionsRun } from "react-icons/md";
+import MetaDeta from "../layout/MetaDeta";
+
 
 const Home = () => {
   // const [products, setProducts] = useState([]);
@@ -25,6 +27,7 @@ const Home = () => {
 
   return (
     <div>
+      <MetaDeta title="SHOPPING 1416"/>
       <Row className="banner d-flex align-items-center justify-content-center g-0 min-padding">
         <Col md={6} className="pt-5 text-center">
           <h4>

@@ -1,7 +1,7 @@
 import React from "react";
 import "./Header.css";
 import { Navbar, Nav, Button, NavDropdown } from "react-bootstrap";
-import logo from "../../images/logo.png";
+import logo from "../../../images/logo.png";
 import { CgProfile } from "react-icons/cg";
 import { BiLogOut } from "react-icons/bi";
 import { Link } from "react-router-dom";
@@ -15,7 +15,7 @@ const Header = () => {
           src={logo}
           width="70"
           height="70"
-          class="d-inline-block align-top"
+          className="d-inline-block align-top"
           alt=""
         /></Link>
       </Navbar.Brand>
@@ -23,10 +23,10 @@ const Header = () => {
       <div className="container-fluid">
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Link to="/home" className="text-dark text-decoration-none me-3">Home</Link>
-            <Link to="/product" className="text-dark text-decoration-none me-3">Product</Link>
-            <Link to="/contact" className="text-dark text-decoration-none me-3">Contact</Link>
-            <Link to="/about" className="text-dark text-decoration-none me-3">About</Link>
+            <Link to="/home" className="text-dark text-decoration-none me-3 menu-text">Home</Link>
+            <Link to="/product" className="text-dark text-decoration-none me-3 menu-text">Product</Link>
+            <Link to="/contact" className="text-dark text-decoration-none me-3 menu-text">Contact</Link>
+            <Link to="/about" className="text-dark text-decoration-none me-3 menu-text">About</Link>
           </Nav>
           <Nav className="ms-auto me-4">
             <Nav.Link className="mt-2" href="#home">

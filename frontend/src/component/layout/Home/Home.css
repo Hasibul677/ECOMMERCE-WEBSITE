@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=DynaPuff:wght@500&display=swap');
+.banner{
+    background-image: linear-gradient(to right, #726cca, #473dd2fe);
+    color: white;
+}
+.min-padding{
+  padding: 150px 0;
+}
+.title-text{
+  font-family: 'DynaPuff', cursive;
+}
+
+@media only screen and (max-width: 600px) {
+    .banner {
+      flex-direction: column-reverse;
+    }
+    .min-padding{
+      padding: 50px 0;
+    }
+  }

@@ -1,0 +1,11 @@
+footer {
+    margin-top: 10vmax;
+    padding: 2vmax;
+    background-color: rgb(34, 33, 33);
+    color: white;
+    align-items: center;
+  }
+  .footer_menu:hover{
+    color: rgb(118, 118, 238) !important;
+    transition: all .5s ease-in-out;
+  }

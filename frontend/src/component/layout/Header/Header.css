@@ -1,0 +1,14 @@
+.logo {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+  }
+.menu-text{
+ border-bottom: 2px solid #f8f9fa;
+ transition: all 1s ease-in-out;
+}  
+.menu-text:hover{
+  color: blue !important;
+ border-bottom: 2px solid rgb(0, 217, 255);
+ transition: all .5s ease-in-out;
+}  

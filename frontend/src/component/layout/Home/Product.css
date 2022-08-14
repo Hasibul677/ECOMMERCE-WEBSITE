@@ -1,0 +1,7 @@
+.product-card{
+transition: all 1s ease-in-out;
+}
+.product-card:hover{
+transform: translate(-5px, -5px);
+transition: all 1.3s ease-in-out;
+}

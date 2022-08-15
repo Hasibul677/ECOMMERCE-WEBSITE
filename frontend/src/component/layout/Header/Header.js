@@ -8,16 +8,16 @@ import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
-    <Navbar bg="light" expand="lg" className="px-2 px-md-5 fs-5 fw-bold d-flex">
+    <Navbar bg="light" expand="lg" className="px-2 px-md-5 fs-6 fw-bold d-flex p-0">
       <Navbar.Brand>
         <Link to="/">
-        <img
-          src={logo}
-          width="70"
-          height="70"
-          className="d-inline-block align-top"
-          alt=""
-        /></Link>
+          <img
+            src={logo}
+            width="50"
+            height="50"
+            className="d-inline-block align-top"
+            alt=""
+          /></Link>
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <div className="container-fluid">
@@ -28,13 +28,7 @@ const Header = () => {
             <Link to="/contact" className="text-dark text-decoration-none me-3 menu-text">Contact</Link>
             <Link to="/about" className="text-dark text-decoration-none me-3 menu-text">About</Link>
           </Nav>
-          <Nav className="ms-auto me-4">
-            <Nav.Link className="mt-2" href="#home">
-              <Button className="bg-light text-dark fw-bold">Login</Button>
-            </Nav.Link>
-            <Nav.Link className="mt-2" href="#link">
-              <Button className="bg-light text-dark fw-bold">Register</Button>
-            </Nav.Link>
+          <Nav className="ms-auto">
             <NavDropdown
               title={
                 <img
@@ -51,6 +45,13 @@ const Header = () => {
                 <BiLogOut /> Logout
               </NavDropdown.Item>
             </NavDropdown>
+            <Nav.Link className="mt-2" href="#home">
+              <Button className="bg-light text-dark fw-bold">Login</Button>
+            </Nav.Link>
+            <Nav.Link className="mt-2" href="#link">
+              <Button className="bg-light text-dark fw-bold">Register</Button>
+            </Nav.Link>
+
           </Nav>
         </Navbar.Collapse>
       </div>

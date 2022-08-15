@@ -31,8 +31,8 @@ const Product = ({ product }) => {
                   <small className="fs-6 fw-bold">({options.value})</small>
                 </div>
               </Card.Title>
-              <Card.Text>
-                <div className="text-danger fs-5 fw-bold">{product.price}</div>
+              <Card.Text className="text-danger fs-5 fw-bold">
+                {product.price}
               </Card.Text>
             </Card.Body>
           </Card>
@@ -54,8 +54,8 @@ const Product = ({ product }) => {
                   <small className="fs-6 fw-bold">({options.value})</small>
                 </div>
               </Card.Title>
-              <Card.Text>
-                <div className="text-danger fs-5 fw-bold">{product.price}</div>
+              <Card.Text className="text-danger fs-5 fw-bold">
+                {product.price}
               </Card.Text>
             </Card.Body>
           </Card>

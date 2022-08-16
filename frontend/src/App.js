@@ -4,7 +4,7 @@ import Header from "./component/layout/Header/Header";
 import webFont from "webfontloader";
 import { useEffect } from "react";
 import Footer from "./component/layout/Footer/Footer";
-import Home from "./component/Home/Home"
+import Home from "./component/Home/Home";
 
 function App() {
   useEffect(() => {
@@ -15,11 +15,12 @@ function App() {
   return (
     <Routes>
       <Route
+        exact
         path="/"
         element={
           <>
             <Header />
-            <Home/>
+            <Home />
             <Footer />
           </>
         }

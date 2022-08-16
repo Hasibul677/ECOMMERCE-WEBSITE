@@ -23,8 +23,7 @@ const Home = () => {
       return alert.error(error);
     }
     dispatch(getProduct());
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch, error]);
+  }, [dispatch, error, alert]);
 
   return (
     <Fragment>

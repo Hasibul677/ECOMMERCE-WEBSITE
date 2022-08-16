@@ -15,7 +15,7 @@ const Product = ({ product }) => {
   };
   return (
     <Col md={6} lg={3} className="p-2 product-card">
-      <Link className="text-decoration-none text-dark" to={product._id}>
+      <Link className="text-decoration-none text-dark" to={`/product/${product._id}`}>
         <Card>
           <Card.Img
             variant="top"

@@ -13,7 +13,7 @@ import {useAlert} from "react-alert";
 const Home = () => {
   const dispatch = useDispatch();
   const alert = useAlert();
-  const { loading, error, products, productsCount } = useSelector(
+  const { loading, error, products } = useSelector(
     (state) => state.products
   );
   // const [products, setProducts] = useState([]);

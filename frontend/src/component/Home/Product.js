@@ -1,6 +1,6 @@
 import React from "react";
 import "./Product.css";
-import { Card, Col, Row } from "react-bootstrap";
+import { Card, Col} from "react-bootstrap";
 import ReactStars from "react-rating-stars-component";
 import { Link } from "react-router-dom";
 
@@ -18,7 +18,7 @@ const Product = ({ product }) => {
       <Link className="text-decoration-none text-dark" to={`/product/${product._id}`}>
         <Card>
           <Card.Img
-            variant="top"
+            className="img-fluid"
             src={product?.images[0].url}
             alt={product.name}
           />

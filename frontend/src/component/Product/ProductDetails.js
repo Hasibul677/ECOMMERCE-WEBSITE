@@ -5,9 +5,12 @@ import "react-multi-carousel/lib/styles.css";
 import { useSelector, useDispatch } from "react-redux";
 import { getProductDetails } from "../../actions/productAction";
 import { useParams } from "react-router-dom";
-import { Col, Row } from "react-bootstrap";
+import { Button, Col, Row } from "react-bootstrap";
 import Loader from "../layout/Loader/Loader";
 import ReactStars from "react-rating-stars-component";
+import { IoMdAdd } from "react-icons/io";
+import { GrFormSubtract } from "react-icons/gr";
+import { BsCart4 } from "react-icons/bs";
 
 const responsive = {
   desktop: {
@@ -43,7 +46,7 @@ const ProductDetails = () => {
     edit: false,
     size: 21,
     color: "rgba(20,20,20,0.1)",
-    activeColor: "gold",
+    activeColor: "#ffd700",
     value: product.ratings,
     isHalf: true,
   };
@@ -54,7 +57,7 @@ const ProductDetails = () => {
         <Loader />
       ) : (
         <div>
-          <Row className="productDetails g-0 p-5">
+          <Row className="productDetails g-0 p-3 p-md-5 text-center text-md-start">
             <Col md={6} className="text-center">
               <Carousel
                 showDots={true}
@@ -67,7 +70,7 @@ const ProductDetails = () => {
                 {product.images &&
                   product.images.map((item, i) => (
                     <img
-                      className="img-fluid"
+                      className="imageDetails"
                       key={item.url}
                       src={item.url}
                       alt={`${i} Slide`}
@@ -75,17 +78,60 @@ const ProductDetails = () => {
                   ))}
               </Carousel>
             </Col>
-            <Col md={6}>
+            <Col md={6} className="ps-md-4 mt-4 mt-md-0 bg-color p-2 rounded">
               <h3>{product.name}</h3>
-              <div>
-                <div className="d-flex align-items-center">
+
+              <div className="rating-div">
+                <div className="rating py-3">
                   <ReactStars {...options} />{" "}
-                  <small className="fs-6">
-                    ({product.ratings})
+                  <small className="ms-3 fs-6">
+                    ({product.numOfReviews}) Reviews
                   </small>
                 </div>
-                <span>({product.numOfReviews}) Reviewer</span>
               </div>
+
+              <div className="mt-4">
+                <h4>{product?.price} Tk</h4>
+                <div className="rating py-4">
+                  <Button className="card bg-light border p-2">
+                    <GrFormSubtract />
+                  </Button>
+                  <input
+                    className="text-center mx-2 stockInput p-1 fw-bold"
+                    type="text"
+                    defaultValue={product.stock}
+                    disabled
+                  />
+                  <Button className="card bg-light border p-2">
+                    <IoMdAdd className="text-dark" />
+                  </Button>
+
+                  <Button className="ms-4 rounded-pill fw-bold cartBtn p-1 px-3 d-flex align-items-center">
+                   <BsCart4 className="fs-5"/> <div className="ms-1">Cart</div>
+                  </Button>
+                </div>
+              </div>
+
+              <div className="rating-div mt-3">
+                <div className="py-3 fw-bold">
+                  Status:{" "}
+                  <small
+                    className={`ms-2 fs-6 ${
+                      product.stock >= 1 ? "text-success" : "text-danger"
+                    }`}
+                  >
+                    {product.stock >= 1 ? "InStock" : " StockOut"}
+                  </small>
+                </div>
+              </div>
+
+              <div className="mt-3">
+                <h6 className="fw-bold"> Description</h6>
+                <p className="fs-6">{product.description}</p>
+              </div>
+              <Button className="rounded fw-bold cartBtn p-1 px-2 mt-4">
+                Submit Review
+              </Button>
             </Col>
           </Row>
         </div>

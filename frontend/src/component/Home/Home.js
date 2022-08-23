@@ -2,11 +2,11 @@ import React, { Fragment, useEffect } from "react";
 import { Button, Col, Row } from "react-bootstrap";
 import "./Home.css";
 import home from "../../images/home.png";
-import Product from "./Product";
+import ProductCard from "./ProductCard";
 import { MdOutlineDirectionsRun } from "react-icons/md";
 import MetaDeta from "../layout/MetaDeta";
 import { useSelector, useDispatch } from "react-redux";
-import { getProduct } from "../../actions/productAction";
+import { clearError, getProduct } from "../../actions/productAction";
 import Loader from "../layout/Loader/Loader";
 import {useAlert} from "react-alert";
 
@@ -20,7 +20,8 @@ const Home = () => {
 
   useEffect(() => {
     if (error) {
-      return alert.error(error);
+      alert.error(error);
+      dispatch(clearError());
     }
     dispatch(getProduct());
   }, [dispatch, error, alert]);
@@ -59,7 +60,7 @@ const Home = () => {
             <Row className="g-0 px-3">
               {products &&
                 products.map((product) => (
-                  <Product key={product._id} product={product} />
+                  <ProductCard key={product._id} product={product} />
                 ))}
             </Row>
           </div>

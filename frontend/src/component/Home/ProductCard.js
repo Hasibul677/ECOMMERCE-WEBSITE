@@ -1,10 +1,10 @@
 import React from "react";
-import "./Product.css";
+import "./ProductCard.css";
 import { Card, Col} from "react-bootstrap";
 import ReactStars from "react-rating-stars-component";
 import { Link } from "react-router-dom";
 
-const Product = ({ product }) => {
+const ProductCard = ({ product }) => {
   const options = {
     edit: false,
     size: 21,
@@ -15,7 +15,7 @@ const Product = ({ product }) => {
   };
   return (
     <Col md={6} lg={3} className="p-2 product-card">
-      <Link className="text-decoration-none text-dark" to={`/product/${product._id}`}>
+      <a className="text-decoration-none text-dark" href={`/product/${product._id}`}>
         <Card>
           <Card.Img
             className="img-fluid"
@@ -35,9 +35,9 @@ const Product = ({ product }) => {
             </Card.Text>
           </Card.Body>
         </Card>
-      </Link>
+      </a>
     </Col>
   );
 };
 
-export default Product;
+export default ProductCard;

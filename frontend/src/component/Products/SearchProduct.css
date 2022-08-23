@@ -1,0 +1,11 @@
+.searchParent{
+    position: relative;
+}
+.searchIcon{
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.searchInput{
+    padding: 10px 5px !important;
+}

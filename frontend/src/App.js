@@ -58,6 +58,16 @@ function App() {
           </>
         }
       />
+      <Route
+        path="/products/:keyword"
+        element={
+          <>
+            <Header />
+            <Products />
+            <Footer />
+          </>
+        }
+      />
     </Routes>
   );
 }

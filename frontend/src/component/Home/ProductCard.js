@@ -31,7 +31,7 @@ const ProductCard = ({ product }) => {
               </div>
             </Card.Title>
             <Card.Text className="text-danger fs-5 fw-bold">
-              {product.price} Tk.
+              {product.price} Tk
             </Card.Text>
           </Card.Body>
         </Card>

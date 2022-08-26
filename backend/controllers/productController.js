@@ -27,11 +27,12 @@ exports.getAllProduct = catchAsyncErrors(async (req, res, next) => {
   const prodctsCount = await Product.countDocuments();
   let apiFeatures = new ApiFeatures(Product.find(), req.query)
     .search()
-    .filter()
-    .pagination(resultPerPage);
+    .filter();
 
-   let products = await apiFeatures.query;
-   let filteredProductCount = products.length;
+  let products = await apiFeatures.query;
+  let filteredProductCount = products.length;
+  apiFeatures.pagination(resultPerPage);
+  products = await apiFeatures.query.clone();
 
   if (products) {
     res.status(200).json({

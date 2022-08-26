@@ -36,11 +36,12 @@ const Products = () => {
     <div>
       <div className="mx-4">
         <Row className="d-block d-md-flex justify-content-center">
-          <Col md={3}></Col>
-          <Col md={6} className="mt-3">
-            <SearchProduct />
-          </Col>
-          <Col md={3}></Col>
+          <div className="d-flex justify-content-center mt-3">
+            <div className="w-50">
+              <SearchProduct />
+            </div>
+
+          </div>
           <Col md={2} className="mt-4">
             <ProductsPriceSlider price={price} handlePrice={handlePrice} />
           </Col>
@@ -64,10 +65,10 @@ const Products = () => {
                     products.map((product) => (
                       <ProductCard key={product._id} product={product} />
                     ))}
-                  {filteredProductCount >= resultPerPage && (
+                  {(prodctsCount > resultPerPage) && (filteredProductCount > resultPerPage) && (
                     <div className="d-flex justify-content-center">
                       <Pagination
-                        count={Math.ceil( prodctsCount/ 8)}
+                        count={Math.ceil(filteredProductCount / 8)}
                         page={page}
                         color="secondary"
                         variant="outlined"

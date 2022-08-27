@@ -6,11 +6,12 @@ const ProductsPriceSlider = ({
   handlePrice,
   categories,
   handleCategories,
+  handleRating,
+  ratings,
 }) => {
-
   return (
     <div>
-      <Typography className="fw-bold">Price Range</Typography>
+      <Typography className="fw-bold">Price</Typography>
       <Slider
         value={price}
         onChange={handlePrice}
@@ -19,21 +20,34 @@ const ProductsPriceSlider = ({
         min={0}
         max={5000}
       />
-
-      <div >
-        <Typography className="fw-bold mt-3">Categories</Typography>
-        <div>
-          { categories && categories.map((category) => (
-            <li
-              className="category-link text-secondary"
-              key={category}
-              onClick={() => handleCategories(category)}
-            >
-              {category}
-            </li>
-          ))}
+      {/* Categories  */}
+      <div>
+        <Typography className="fw-bold mt-2">Categories</Typography>
+        <div className="text-center border rounded bg-light">
+          {categories &&
+            categories.map((category) => (
+              <li
+                className="category-link text-secondary border rounded"
+                key={category}
+                onClick={() => handleCategories(category)}
+              >
+                {category}
+              </li>
+            ))}
         </div>
       </div>
+      {/* Rating  */}
+      <fieldset className="mt-2">
+        <Typography className="fw-bold">Rating</Typography>
+        <Slider
+          value={ratings}
+          onChange={handleRating}
+          valueLabelDisplay="auto"
+          aria-labelledby="continuous-slider"
+          min={0}
+          max={5}
+        />
+      </fieldset>
     </div>
   );
 };

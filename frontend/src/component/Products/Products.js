@@ -26,9 +26,13 @@ const Products = () => {
   const [page, setPage] = useState(1);
   const [price, setPrice] = useState([0, 5000]);
   const [category, setCategory] = useState("");
+  const [ratings, setRatings] = useState(0);
 
   const handlePrice = (event, newPrice) => {
     setPrice(newPrice);
+  };
+  const handleRating = (event, newRating) => {
+    setRatings(newRating);
   };
 
   const handleCategories = (category) => {
@@ -42,8 +46,8 @@ const Products = () => {
       alert.error(error);
       dispatch(clearError());
     }
-    dispatch(getProduct(keyword, page, price, category));
-  }, [dispatch, error, alert, keyword, page, price, category]);
+    dispatch(getProduct(keyword, page, price, category, ratings));
+  }, [dispatch, error, alert, keyword, page, price, category, ratings]);
 
   return (
     <div>
@@ -60,6 +64,8 @@ const Products = () => {
               handlePrice={handlePrice}
               categories={categories}
               handleCategories={handleCategories}
+              ratings={ratings}
+              handleRating={handleRating}
             />
           </Col>
           <Col md={10}>

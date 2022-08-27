@@ -9,28 +9,41 @@ import SearchProduct from "./SearchProduct";
 import { useParams } from "react-router-dom";
 import Pagination from "@material-ui/lab/Pagination";
 import ProductsPriceSlider from "./ProductsPriceSlider";
+import categories from "../../json/categories.json";
 
 const Products = () => {
   const dispatch = useDispatch();
   const alert = useAlert();
-  const { products, loading, error, prodctsCount, resultPerPage, filteredProductCount } = useSelector(
-    (state) => state.products
-  );
+  const {
+    products,
+    loading,
+    error,
+    prodctsCount,
+    resultPerPage,
+    filteredProductCount,
+  } = useSelector((state) => state.products);
   const { keyword } = useParams();
   const [page, setPage] = useState(1);
   const [price, setPrice] = useState([0, 5000]);
+  const [category, setCategory] = useState("");
 
   const handlePrice = (event, newPrice) => {
     setPrice(newPrice);
   };
+
+  const handleCategories = (category) => {
+    setCategory(category);
+  };
+
+  let count = filteredProductCount;
 
   useEffect(() => {
     if (error) {
       alert.error(error);
       dispatch(clearError());
     }
-    dispatch(getProduct(keyword, page, price));
-  }, [dispatch, error, alert, keyword, page, price]);
+    dispatch(getProduct(keyword, page, price, category));
+  }, [dispatch, error, alert, keyword, page, price, category]);
 
   return (
     <div>
@@ -40,10 +53,14 @@ const Products = () => {
             <div className="w-50">
               <SearchProduct />
             </div>
-
           </div>
           <Col md={2} className="mt-4">
-            <ProductsPriceSlider price={price} handlePrice={handlePrice} />
+            <ProductsPriceSlider
+              price={price}
+              handlePrice={handlePrice}
+              categories={categories}
+              handleCategories={handleCategories}
+            />
           </Col>
           <Col md={10}>
             {loading ? (
@@ -65,10 +82,10 @@ const Products = () => {
                     products.map((product) => (
                       <ProductCard key={product._id} product={product} />
                     ))}
-                  {(prodctsCount > resultPerPage) && (filteredProductCount > resultPerPage) && (
+                  {prodctsCount > resultPerPage && count > resultPerPage && (
                     <div className="d-flex justify-content-center">
                       <Pagination
-                        count={Math.ceil(filteredProductCount / 8)}
+                        count={Math.ceil(count / 8)}
                         page={page}
                         color="secondary"
                         variant="outlined"

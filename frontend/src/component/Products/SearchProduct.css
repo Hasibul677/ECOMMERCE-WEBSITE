@@ -9,3 +9,13 @@
 .searchInput{
     padding: 10px 5px !important;
 }
+.category-link{
+    list-style: none;
+    margin: 0.4vmax;
+    cursor: pointer;
+    transition: all 0.5s;
+}
+.category-link:hover{
+    color: blue !important;
+    font-size: 18px;
+}

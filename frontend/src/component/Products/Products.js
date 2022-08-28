@@ -11,6 +11,7 @@ import Pagination from "@material-ui/lab/Pagination";
 import ProductsPriceSlider from "./ProductsPriceSlider";
 import categories from "../../json/categories.json";
 import { useNavigate } from "react-router-dom";
+import MetaDeta from "../layout/MetaDeta";
 
 const Products = () => {
   const dispatch = useDispatch();
@@ -66,57 +67,56 @@ const Products = () => {
 
   console.log(keyword);
   return (
-    <div>
-      <div className="mx-4">
-        <Row className="d-block d-md-flex justify-content-center">
-          <Col md={2} className="mt-4">
-            <ProductsPriceSlider
-              price={price}
-              handlePrice={handlePrice}
-              categories={categories}
-              handleCategories={handleCategories}
-              ratings={ratings}
-              handleRating={handleRating}
-            />
-          </Col>
-          <Col md={10}>
-            {loading ? (
-              <Loader />
-            ) : (
-              <div>
-                <div className="d-flex justify-content-center mt-3">
-                  <div className="w-50">
-                    <SearchProduct
-                      handleSubmit={handleSubmit}
-                      setKeywords={setKeywords}
+    <div className="mx-4">
+      <MetaDeta title="PRODUCTS SHOPPING 1416"/>
+      <Row className="d-block d-md-flex justify-content-center">
+        <Col md={2} className="mt-4">
+          <ProductsPriceSlider
+            price={price}
+            handlePrice={handlePrice}
+            categories={categories}
+            handleCategories={handleCategories}
+            ratings={ratings}
+            handleRating={handleRating}
+          />
+        </Col>
+        <Col md={10}>
+          {loading ? (
+            <Loader />
+          ) : (
+            <div>
+              <div className="d-flex justify-content-center mt-3">
+                <div className="w-50">
+                  <SearchProduct
+                    handleSubmit={handleSubmit}
+                    setKeywords={setKeywords}
+                  />
+                </div>
+              </div>
+
+              <h3 className="title-text text-center my-2">All Products</h3>
+              <Row className="g-0 d-md-flex justify-content-center">
+                {products &&
+                  products?.map((product) => (
+                    <ProductCard key={product._id} product={product} />
+                  ))}
+                {prodctsCount > resultPerPage && count > resultPerPage && (
+                  <div className="d-flex justify-content-center">
+                    <Pagination
+                      count={Math.ceil(count / 8)}
+                      page={page}
+                      color="secondary"
+                      variant="outlined"
+                      shape="rounded"
+                      onChange={(e, value) => setPage(value)}
                     />
                   </div>
-                </div>
-
-                <h3 className="title-text text-center my-2">All Products</h3>
-                <Row className="g-0 d-md-flex justify-content-center">
-                  {products &&
-                    products?.map((product) => (
-                      <ProductCard key={product._id} product={product} />
-                    ))}
-                  {prodctsCount > resultPerPage && count > resultPerPage && (
-                    <div className="d-flex justify-content-center">
-                      <Pagination
-                        count={Math.ceil(count / 8)}
-                        page={page}
-                        color="secondary"
-                        variant="outlined"
-                        shape="rounded"
-                        onChange={(e, value) => setPage(value)}
-                      />
-                    </div>
-                  )}
-                </Row>
-              </div>
-            )}
-          </Col>
-        </Row>
-      </div>
+                )}
+              </Row>
+            </div>
+          )}
+        </Col>
+      </Row>
     </div>
   );
 };

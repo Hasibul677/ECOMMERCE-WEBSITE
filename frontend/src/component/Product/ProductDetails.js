@@ -9,6 +9,7 @@ import ProductReview from "./ProductReview";
 import ProductDetailsView from "./ProductDetailsView";
 import Carousel from "react-multi-carousel";
 import { useAlert } from "react-alert";
+import MetaDeta from "../layout/MetaDeta";
 
 const responsive = {
   desktop: {
@@ -37,8 +38,6 @@ const ProductDetails = () => {
     (state) => state?.productDetails
   );
 
-  console.log(product.reviews);
-
   useEffect(() => {
     if (error) {
       alert.error(error);
@@ -53,6 +52,7 @@ const ProductDetails = () => {
         <Loader />
       ) : (
         <div>
+          <MetaDeta title={`${product?.name} SHOPPING 1416`} />
           <ProductDetailsView product={product} />
 
           <div className="mt-5">

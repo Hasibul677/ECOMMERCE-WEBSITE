@@ -25,7 +25,7 @@ const ProductsPriceSlider = ({
         <Typography className="fw-bold mt-2">Categories</Typography>
         <div className="text-center border rounded bg-light">
           {categories &&
-            categories.map((category) => (
+            categories?.map((category) => (
               <li
                 className="category-link text-secondary border rounded"
                 key={category}

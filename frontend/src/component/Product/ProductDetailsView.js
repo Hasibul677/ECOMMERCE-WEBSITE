@@ -43,25 +43,25 @@ const ProductDetailsView = ({ product }) => {
           transitionDuration={500}
           removeArrowOnDeviceType={["desktop", "tablet", "mobile"]}
         >
-          {product.images &&
-            product.images.map((item, i) => (
+          {product?.images &&
+            product?.images.map((item, i) => (
               <img
                 className="imageDetails"
-                key={item.url}
-                src={item.url}
+                key={item?.url}
+                src={item?.url}
                 alt={`${i} Slide`}
               />
             ))}
         </Carousel>
       </Col>
       <Col md={6} className="ps-md-4 mt-4 mt-md-0 bg-color p-2 rounded">
-        <h3>{product.name}</h3>
+        <h3>{product?.name}</h3>
 
         <div className="rating-div">
           <div className="rating py-3">
             {<ReactStars {...options} />}{" "}
             <small className="ms-3 fs-6">
-              ({product.numOfReviews}) Reviews
+              ({product?.numOfReviews}) Reviews
             </small>
           </div>
         </div>
@@ -75,7 +75,7 @@ const ProductDetailsView = ({ product }) => {
             <input
               className="text-center mx-2 stockInput p-1 fw-bold"
               type="text"
-              defaultValue={product.stock}
+              defaultValue={product?.stock}
               disabled
             />
             <Button className="card bg-light border p-2">
@@ -93,17 +93,17 @@ const ProductDetailsView = ({ product }) => {
             Status:{" "}
             <small
               className={`ms-2 fs-6 ${
-                product.stock >= 1 ? "text-success" : "text-danger"
+                product?.stock >= 1 ? "text-success" : "text-danger"
               }`}
             >
-              {product.stock >= 1 ? "InStock" : " StockOut"}
+              {product?.stock >= 1 ? "InStock" : " StockOut"}
             </small>
           </div>
         </div>
 
         <div className="mt-3">
           <h6 className="fw-bold"> Description</h6>
-          <p className="fs-6">{product.description}</p>
+          <p className="fs-6">{product?.description}</p>
         </div>
         <Button className="rounded fw-bold cartBtn p-1 px-2 mt-4">
           Submit Review

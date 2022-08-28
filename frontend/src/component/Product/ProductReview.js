@@ -21,7 +21,7 @@ const ProductReview = ({ review }) => {
       <div className="">
         <p className="fw-bold my-2"> {review?.name}</p>
         <div className="d-flex align-items-center justify-content-center">
-          <ReactStars {...options} /> <span>({review.rating})</span>
+          <ReactStars {...options} /> <span>({review?.rating})</span>
         </div>
         <span>{review?.comment}</span>
       </div>

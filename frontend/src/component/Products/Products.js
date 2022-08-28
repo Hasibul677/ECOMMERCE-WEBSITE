@@ -29,13 +29,16 @@ const Products = () => {
   const [ratings, setRatings] = useState(0);
 
   const handlePrice = (event, newPrice) => {
+    setPage(1)
     setPrice(newPrice);
   };
   const handleRating = (event, newRating) => {
+    setPage(1)
     setRatings(newRating);
   };
 
   const handleCategories = (category) => {
+    setPage(1)
     setCategory(category);
   };
 
@@ -85,7 +88,7 @@ const Products = () => {
                 </h3>
                 <Row className="g-0">
                   {products &&
-                    products.map((product) => (
+                    products?.map((product) => (
                       <ProductCard key={product._id} product={product} />
                     ))}
                   {prodctsCount > resultPerPage && count > resultPerPage && (

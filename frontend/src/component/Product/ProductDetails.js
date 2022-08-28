@@ -34,8 +34,10 @@ const ProductDetails = () => {
   const { id } = useParams();
 
   const { product, loading, error } = useSelector(
-    (state) => state.productDetails
+    (state) => state?.productDetails
   );
+
+  console.log(product.reviews);
 
   useEffect(() => {
     if (error) {
@@ -57,23 +59,27 @@ const ProductDetails = () => {
             <h3 className="title-text text-center text-md-start ps-md-2">
               Customer Reviews
             </h3>
-            <Carousel
-              autoPlay={true}
-              swipeable={true}
-              infinite={true}
-              slidesToSlide={1}
-              responsive={responsive}
-              customTransition="all 1s"
-              transitionDuration={500}
-              removeArrowOnDeviceType={["tablet", "desktop"]}
-            >
-              {product.reviews && product.reviews[0]
-                ? product.reviews &&
-                  product.reviews.map((review) => (
+            {product && product?.reviews?.length > 0 ? (
+              <Carousel
+                autoPlay={true}
+                swipeable={true}
+                infinite={true}
+                slidesToSlide={1}
+                responsive={responsive}
+                customTransition="all 1s"
+                transitionDuration={500}
+                removeArrowOnDeviceType={["tablet", "desktop"]}
+              >
+                {product?.reviews &&
+                  product?.reviews.map((review) => (
                     <ProductReview key={review._id} review={review} />
-                  ))
-                : "Design Comming soon"}
-            </Carousel>
+                  ))}
+              </Carousel>
+            ) : (
+              <div className="p-2">
+                <strong>Design will be coming soon</strong>
+              </div>
+            )}
           </div>
         </div>
       )}

@@ -59,7 +59,7 @@ const Home = () => {
           <h3 className="title-text text-center">Featured Products</h3>
           <Row className="g-0 px-3">
             {products &&
-              products.map((product) => (
+              products?.map((product) => (
                 <ProductCard key={product._id} product={product} />
               ))}
           </Row>

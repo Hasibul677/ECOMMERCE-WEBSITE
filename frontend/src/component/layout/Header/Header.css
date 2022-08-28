@@ -5,6 +5,7 @@
   }
 .menu-text{
  border-bottom: 2px solid #f8f9fa;
+ font-family: cursive;
  transition: all 1s ease-in-out;
 }  
 .menu-text:hover{

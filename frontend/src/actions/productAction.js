@@ -15,9 +15,9 @@ export const getProduct =
     try {
       dispatch({ type: ALL_PRODUCT_REQUEST });
       let link = `http://localhost:4000/api/v1/products?keyword=${keyword}&page=${page}&price[gte]=${price[0]}&price[lte]=${price[1]}&ratings[gte]=${ratings}`;
-      
+
       if (category) {
-        link = `http://localhost:4000/api/v1/products?keyword=${keyword}&page=${page}&price[gte]=${price[0]}&price[lte]=${price[1]}&category=${category}&ratings[gte]=${ratings}`;
+        link = `http://localhost:4000/api/v1/products?keyword=&page=${page}&price[gte]=${price[0]}&price[lte]=${price[1]}&category=${category}&ratings[gte]=${ratings}`;
         console.log(link);
       }
       const { data } = await axios.get(link);

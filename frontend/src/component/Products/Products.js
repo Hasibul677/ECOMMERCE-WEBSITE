@@ -10,6 +10,7 @@ import { useParams } from "react-router-dom";
 import Pagination from "@material-ui/lab/Pagination";
 import ProductsPriceSlider from "./ProductsPriceSlider";
 import categories from "../../json/categories.json";
+import { useNavigate } from "react-router-dom";
 
 const Products = () => {
   const dispatch = useDispatch();
@@ -23,23 +24,34 @@ const Products = () => {
     filteredProductCount,
   } = useSelector((state) => state.products);
   const { keyword } = useParams();
+  const navigate = useNavigate();
   const [page, setPage] = useState(1);
+  const [keywords, setKeywords] = useState("");
   const [price, setPrice] = useState([0, 5000]);
   const [category, setCategory] = useState("");
   const [ratings, setRatings] = useState(0);
 
   const handlePrice = (event, newPrice) => {
-    setPage(1)
+    setPage(1);
     setPrice(newPrice);
   };
   const handleRating = (event, newRating) => {
-    setPage(1)
+    setPage(1);
     setRatings(newRating);
   };
-
   const handleCategories = (category) => {
-    setPage(1)
+    setPage(1);
     setCategory(category);
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setPage(1);
+    setCategory("");
+    if (keywords.trim()) {
+      navigate(`/products/${keywords}`);
+    } else {
+      navigate(`/products/${keywords}`);
+    }
   };
 
   let count = filteredProductCount;
@@ -52,15 +64,11 @@ const Products = () => {
     dispatch(getProduct(keyword, page, price, category, ratings));
   }, [dispatch, error, alert, keyword, page, price, category, ratings]);
 
+  console.log(keyword);
   return (
     <div>
       <div className="mx-4">
         <Row className="d-block d-md-flex justify-content-center">
-          <div className="d-flex justify-content-center mt-3">
-            <div className="w-50">
-              <SearchProduct />
-            </div>
-          </div>
           <Col md={2} className="mt-4">
             <ProductsPriceSlider
               price={price}
@@ -76,17 +84,17 @@ const Products = () => {
               <Loader />
             ) : (
               <div>
-                <h3 className="title-text text-center my-2">
-                  {keyword === undefined ? (
-                    "All Products"
-                  ) : (
-                    <span className="fs-5">
-                      Search Result:{" "}
-                      <span className="text-success">{keyword}</span>
-                    </span>
-                  )}
-                </h3>
-                <Row className="g-0">
+                <div className="d-flex justify-content-center mt-3">
+                  <div className="w-50">
+                    <SearchProduct
+                      handleSubmit={handleSubmit}
+                      setKeywords={setKeywords}
+                    />
+                  </div>
+                </div>
+
+                <h3 className="title-text text-center my-2">All Products</h3>
+                <Row className="g-0 d-md-flex justify-content-center">
                   {products &&
                     products?.map((product) => (
                       <ProductCard key={product._id} product={product} />

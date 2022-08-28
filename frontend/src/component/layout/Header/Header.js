@@ -45,13 +45,9 @@ const Header = () => {
                 <BiLogOut /> Logout
               </NavDropdown.Item>
             </NavDropdown>
-            <Nav.Link className="mt-2" href="#home">
+            <Link className="mt-3 mb-1" to="/login">
               <Button className="bg-light text-dark fw-bold">Login</Button>
-            </Nav.Link>
-            <Nav.Link className="mt-2" href="#link">
-              <Button className="bg-light text-dark fw-bold">Register</Button>
-            </Nav.Link>
-
+            </Link>
           </Nav>
         </Navbar.Collapse>
       </div>

@@ -65,7 +65,6 @@ const Products = () => {
     dispatch(getProduct(keyword, page, price, category, ratings));
   }, [dispatch, error, alert, keyword, page, price, category, ratings]);
 
-  console.log(keyword);
   return (
     <div className="mx-4">
       <MetaDeta title="PRODUCTS SHOPPING 1416"/>

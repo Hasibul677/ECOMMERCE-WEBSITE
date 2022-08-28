@@ -7,6 +7,8 @@ import Footer from "./component/layout/Footer/Footer";
 import Home from "./component/Home/Home";
 import ProductDetails from "./component/Product/ProductDetails";
 import Products from "./component/Products/Products";
+import LoginSignUp from "./component/User/LoginSignUp";
+import Registration from "./component/User/Registration";
 
 function App() {
   useEffect(() => {
@@ -64,6 +66,26 @@ function App() {
           <>
             <Header />
             <Products />
+            <Footer />
+          </>
+        }
+      />
+      <Route
+        path="/login"
+        element={
+          <>
+            <Header />
+            <LoginSignUp />
+            <Footer />
+          </>
+        }
+      />
+      <Route
+        path="/registration"
+        element={
+          <>
+            <Header />
+            <Registration />
             <Footer />
           </>
         }

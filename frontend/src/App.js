@@ -88,6 +88,15 @@ function App() {
           </>
         }
       />
+      <Route
+        path="/account"
+        element={
+          <>
+            <Header />
+            <Footer/>
+          </>
+        }
+      />
     </Routes>
   );
 }

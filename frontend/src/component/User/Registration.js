@@ -6,8 +6,10 @@ import { Link } from "react-router-dom";
 import { FaRegUser } from "react-icons/fa";
 import { HiOutlineMail } from "react-icons/hi";
 import { TbLock } from "react-icons/tb";
+import profile from "../../images/avatar/avatar.png";
 
 const Registration = () => {
+  const [avatar, setAvatar] = useState(profile);
   const [registerInfo, setRegisterInfo] = useState({
     name: "",
     email: "",
@@ -16,21 +18,35 @@ const Registration = () => {
   });
 
   const handleChange = (e) => {
-    let info = { ...registerInfo };
-    info[e.target.name] = e.target.value;
-    setRegisterInfo(info);
+    if (e.target.name === "avatar") {
+      const reader = new FileReader();
+
+      reader.onload = () => {
+        if (reader.readyState === 2) {
+          setAvatar(reader.result);
+          let info = { ...registerInfo };
+          info[e.target.name] = reader.result;
+          setRegisterInfo(info);
+        }
+      };
+
+      reader.readAsDataURL(e.target.files[0]);
+    } else {
+      let info = { ...registerInfo };
+      info[e.target.name] = e.target.value;
+      setRegisterInfo(info);
+    }
   };
 
   const handleRegister = (e) => {
     e.preventDefault();
   };
 
-  console.log(registerInfo);
   return (
-    <Container className="minHeight mt-4">
+    <Container className="marginTop">
       <Row className="d-md-flex align-items-center">
         <Col md={4}>
-          <img className="img-login" src={login} alt="" />
+          <img className="img-login" src={login} alt="img" />
         </Col>
         <Col md={6}>
           <h5
@@ -40,6 +56,9 @@ const Registration = () => {
             SIGN-UP
           </h5>
           <Form className="formWidth" onSubmit={handleRegister}>
+            <div className="text-center mt-3">
+              <img className="profile" src={avatar} alt="profile" />
+            </div>
             <Form.Group className="mb-2">
               <Form.Label style={{ fontFamily: "cursive" }}>Name</Form.Label>
               <div className="inputparent">

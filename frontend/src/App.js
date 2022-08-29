@@ -76,7 +76,6 @@ function App() {
           <>
             <Header />
             <SignIn />
-            <Footer />
           </>
         }
       />
@@ -86,7 +85,6 @@ function App() {
           <>
             <Header />
             <Registration />
-            <Footer />
           </>
         }
       />

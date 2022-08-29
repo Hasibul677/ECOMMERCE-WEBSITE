@@ -100,7 +100,7 @@ const Products = () => {
                     <ProductCard key={product._id} product={product} />
                   ))}
                 {prodctsCount > resultPerPage && count > resultPerPage && (
-                  <div className="d-flex justify-content-center">
+                  <div className="d-flex justify-content-center mt-3">
                     <Pagination
                       count={Math.ceil(count / 8)}
                       page={page}

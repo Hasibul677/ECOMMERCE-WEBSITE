@@ -1,5 +1,5 @@
-.minHeight{
-    min-height: 48.9vh;
+.marginTop{
+    margin-top: 120px;
 }
 .img-login{
     width: 100%;
@@ -22,6 +22,11 @@
     top: 8px;
     left: 8px;
 }
+.profile {
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+  }
 
 @media screen and (max-width: 600px) {
     .img-login{
@@ -30,5 +35,8 @@
     }
     .formWidth{
         width: 100%;
+    }
+    .marginTop{
+        margin-top: 20px;
     }
   }

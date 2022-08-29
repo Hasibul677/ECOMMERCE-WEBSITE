@@ -5,8 +5,15 @@ import logo from "../../../images/logo.png";
 import { CgProfile } from "react-icons/cg";
 import { BiLogOut } from "react-icons/bi";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import avatar from "../../../images/avatar/avatar.png"
 
 const Header = () => {
+  const { loading, user, isAuthenticated } = useSelector(
+    (state) => state.user
+  );
+
+
   return (
     <Navbar bg="light" expand="lg" className="px-2 px-md-5 fs-6 fw-bold d-flex p-0">
       <Navbar.Brand>
@@ -29,11 +36,11 @@ const Header = () => {
             <Link to="/about" className="text-dark text-decoration-none me-3 menu-text">ABOUT</Link>
           </Nav>
           <Nav className="ms-auto">
-            <NavDropdown
+            {<NavDropdown
               title={
                 <img
                   className="logo"
-                  src="https://img.freepik.com/premium-vector/man-avatar-profile-round-icon_24640-14044.jpg?w=2000"
+                  src={avatar}
                   alt="Img"
                 />
               }
@@ -44,10 +51,10 @@ const Header = () => {
               <NavDropdown.Item>
                 <BiLogOut /> Logout
               </NavDropdown.Item>
-            </NavDropdown>
-            <Link className="mt-3 mb-1" to="/login">
+            </NavDropdown>}
+            {<Link className="mt-3 mb-1" to="/login">
               <Button className="bg-light text-dark fw-bold">Login</Button>
-            </Link>
+            </Link>}
           </Nav>
         </Navbar.Collapse>
       </div>

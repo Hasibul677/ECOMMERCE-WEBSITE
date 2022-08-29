@@ -17,10 +17,12 @@ const SignIn = () => {
   const { loading, error, isAuthenticated } = useSelector(
     (state) => state.user
   );
+
   const [loginInfo, setLoginInfo] = useState({
     email: "",
     password: "",
   });
+  
   let { email, password } = loginInfo;
 
   const handleChange = (e) => {

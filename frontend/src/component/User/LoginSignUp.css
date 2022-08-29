@@ -1,5 +1,5 @@
 .minHeight{
-    min-height: 50vh;
+    min-height: 48.9vh;
 }
 .img-login{
     width: 100%;
@@ -11,6 +11,16 @@
 .btnText{
     font-size: 17px !important;
     font-family: cursive !important;
+}
+.inputparent{
+    position: relative;
+}
+.inputchild{
+    position: absolute;
+    color: rgb(203, 212, 231);
+    font-size: 25px;
+    top: 8px;
+    left: 8px;
 }
 
 @media screen and (max-width: 600px) {

@@ -3,29 +3,24 @@ import "./LoginSignUp.css";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import login from "../../images/avatar/login.png";
 import { Link } from "react-router-dom";
-import { FaRegUser } from "react-icons/fa";
 import { HiOutlineMail } from "react-icons/hi";
 import { TbLock } from "react-icons/tb";
 
-const Registration = () => {
-  const [registerInfo, setRegisterInfo] = useState({
-    name: "",
+const SignIn = () => {
+  const [loginInfo, setLoginInfo] = useState({
     email: "",
-    password: "",
-    avatar: "",
+    password: ""
   });
 
   const handleChange = (e) => {
-    let info = { ...registerInfo };
+    let info = { ...loginInfo };
     info[e.target.name] = e.target.value;
-    setRegisterInfo(info);
+    setLoginInfo(info);
   };
 
-  const handleRegister = (e) => {
+  const handleLogin = (e) => {
     e.preventDefault();
   };
-
-  console.log(registerInfo);
   return (
     <Container className="minHeight mt-4">
       <Row className="d-md-flex align-items-center">
@@ -37,25 +32,10 @@ const Registration = () => {
             className="text-center formWidth fw-bold"
             style={{ fontFamily: "cursive" }}
           >
-            SIGN-UP
+            SIGN-IN
           </h5>
-          <Form className="formWidth" onSubmit={handleRegister}>
-            <Form.Group className="mb-2">
-              <Form.Label style={{ fontFamily: "cursive" }}>Name</Form.Label>
-              <div className="inputparent">
-                <Form.Control
-                  className="ps-5"
-                  required
-                  type="text"
-                  name="name"
-                  placeholder="Your Name"
-                  onChange={handleChange}
-                />
-                <FaRegUser className="inputchild" />
-              </div>
-            </Form.Group>
-
-            <Form.Group className="mb-2">
+          <Form className="formWidth" onSubmit={handleLogin}>
+            <Form.Group className="mb-2" controlId="formBasicEmail">
               <Form.Label style={{ fontFamily: "cursive" }}>Email</Form.Label>
               <div className="inputparent">
                 <Form.Control
@@ -70,7 +50,7 @@ const Registration = () => {
               </div>
             </Form.Group>
 
-            <Form.Group className="mb-2">
+            <Form.Group className="mb-2" controlId="formBasicPassword">
               <Form.Label style={{ fontFamily: "cursive" }}>
                 Password
               </Form.Label>
@@ -86,27 +66,25 @@ const Registration = () => {
                 <TbLock className="inputchild" />
               </div>
             </Form.Group>
-            <Form.Group className="mb-4">
-              <Form.Label style={{ fontFamily: "cursive" }}>
-                Profile Image
-              </Form.Label>
-              <Form.Control
-                type="file"
-                required
-                name="avatar"
-                accept="image/*"
-                onChange={handleChange}
-              />
-            </Form.Group>
-
-            <Form.Group className="mb-3">
+            <Form.Group
+              className="mb-4 d-flex justify-content-between"
+              controlId="formBasicPassword"
+            >
               <Form.Text
                 style={{ fontFamily: "cursive" }}
                 className="text-muted fs-6"
               >
-                Already Registerd?{" "}
+                Are You New?{" "}
+                <Link className="text-decoration-none" to="/registration">
+                  Sign-Up
+                </Link>
+              </Form.Text>
+              <Form.Text
+                style={{ fontFamily: "cursive" }}
+                className="text-muted fs-6"
+              >
                 <Link className="text-decoration-none" to="/login">
-                  Sign-In
+                  Forgot Password ?
                 </Link>
               </Form.Text>
             </Form.Group>
@@ -116,7 +94,7 @@ const Registration = () => {
                 className="rounded-pill px-4 ms-auto bg-light text-dark fw-bold py-1 border btnText"
                 type="submit"
               >
-                Register
+                Login
               </Button>
             </div>
           </Form>
@@ -126,4 +104,4 @@ const Registration = () => {
   );
 };
 
-export default Registration;
+export default SignIn;

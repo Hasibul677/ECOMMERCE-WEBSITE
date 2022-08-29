@@ -7,7 +7,7 @@ import Footer from "./component/layout/Footer/Footer";
 import Home from "./component/Home/Home";
 import ProductDetails from "./component/Product/ProductDetails";
 import Products from "./component/Products/Products";
-import LoginSignUp from "./component/User/LoginSignUp";
+import SignIn from "./component/User/SignIn";
 import Registration from "./component/User/Registration";
 
 function App() {
@@ -75,7 +75,7 @@ function App() {
         element={
           <>
             <Header />
-            <LoginSignUp />
+            <SignIn />
             <Footer />
           </>
         }

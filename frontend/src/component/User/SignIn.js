@@ -14,14 +14,17 @@ const SignIn = () => {
   const dispatch = useDispatch();
   const alert = useAlert();
   const navigate = useNavigate();
-  const { loading, error, isAuthenticated } = useSelector(
+  const {loading, error, isAuthenticated } = useSelector(
     (state) => state.user
   );
+
 
   const [loginInfo, setLoginInfo] = useState({
     email: "",
     password: "",
   });
+
+
   
   let { email, password } = loginInfo;
 

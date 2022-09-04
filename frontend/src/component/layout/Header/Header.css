@@ -12,4 +12,27 @@
   color: blue !important;
  border-bottom: 2px solid rgb(0, 217, 255);
  transition: all .5s ease-in-out;
-}  
+}
+.icon-parent{
+  position: relative;
+  cursor: pointer;
+}
+.menu-parent{
+  position: relative;
+  cursor: pointer;
+}
+.menu-child{
+  display: none;
+  position: absolute;
+  left: -240%;
+  top: 0;
+  color: whitesmoke;
+}
+.menu-parent:hover .menu-child{
+  display: block;
+}
+.icon-div{
+  position: absolute;
+  left: 25%;
+  z-index: 1;
+}

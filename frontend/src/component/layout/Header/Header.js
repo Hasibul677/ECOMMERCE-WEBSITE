@@ -23,7 +23,7 @@ const Header = () => {
   const handleLogout = () => {
     dispatch(logout());
     alert.success("Logout!")
-    navigate("/login")
+    navigate("/")
   };
 
   return (

@@ -38,7 +38,7 @@ const SignIn = () => {
       dispatch(clearError());
     }
     if (isAuthenticated) {
-      navigate("/account");
+      navigate("/profile");
     }
   }, [dispatch, error, alert, isAuthenticated, navigate]);
 

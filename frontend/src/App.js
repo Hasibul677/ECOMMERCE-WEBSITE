@@ -11,8 +11,13 @@ import SignIn from "./component/User/SignIn";
 import Registration from "./component/User/Registration";
 import store from "./store";
 import { loadUser } from "./actions/userAction";
+import Profile from "./component/User/Profile";
+import { useSelector } from "react-redux";
+import NotFound from "./component/layout/NotFound/NotFound";
+import Loader from "./component/layout/Loader/Loader";
 
 function App() {
+  const { loading, isAuthenticated } = useSelector((state) => state.user);
 
   useEffect(() => {
     webFont.load({
@@ -23,87 +28,104 @@ function App() {
   }, []);
 
   return (
-    <Routes>
-      <Route
-        exact
-        path="/"
-        element={
-          <>
-            <Header />
-            <Home />
-            <Footer />
-          </>
-        }
-      />
-      <Route
-        exact
-        path="/home"
-        element={
-          <>
-            <Header />
-            <Home />
-            <Footer />
-          </>
-        }
-      />
-      <Route
-        path="/product/:id"
-        element={
-          <>
-            <Header />
-            <ProductDetails />
-            <Footer />
-          </>
-        }
-      />
-      <Route
-        path="/products"
-        element={
-          <>
-            <Header />
-            <Products />
-            <Footer />
-          </>
-        }
-      />
-      <Route
-        path="/products/:keyword"
-        element={
-          <>
-            <Header />
-            <Products />
-            <Footer />
-          </>
-        }
-      />
-      <Route
-        path="/login"
-        element={
-          <>
-            <Header />
-            <SignIn />
-          </>
-        }
-      />
-      <Route
-        path="/registration"
-        element={
-          <>
-            <Header />
-            <Registration />
-          </>
-        }
-      />
-      <Route
-        path="/account"
-        element={
-          <>
-            <Header />
-            <Footer />
-          </>
-        }
-      />
-    </Routes>
+    <div>
+      {loading ? (
+        <Loader />
+      ) : (
+        <Routes>
+          <Route
+            exact
+            path="/"
+            element={
+              <>
+                <Header />
+                <Home />
+                <Footer />
+              </>
+            }
+          />
+          <Route
+            exact
+            path="/home"
+            element={
+              <>
+                <Header />
+                <Home />
+                <Footer />
+              </>
+            }
+          />
+          <Route
+            path="/product/:id"
+            element={
+              <>
+                <Header />
+                <ProductDetails />
+                <Footer />
+              </>
+            }
+          />
+          <Route
+            path="/products"
+            element={
+              <>
+                <Header />
+                <Products />
+                <Footer />
+              </>
+            }
+          />
+          <Route
+            path="/products/:keyword"
+            element={
+              <>
+                <Header />
+                <Products />
+                <Footer />
+              </>
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <>
+                <Header />
+                <SignIn />
+              </>
+            }
+          />
+          <Route
+            path="/registration"
+            element={
+              <>
+                <Header />
+                <Registration />
+              </>
+            }
+          />
+          {isAuthenticated && (
+            <Route
+              path="/profile"
+              element={
+                <>
+                  <Header />
+                  <Profile />
+                  <Footer />
+                </>
+              }
+            />
+          )}
+          <Route
+            path="*"
+            element={
+              <>
+                <NotFound />
+              </>
+            }
+          />
+        </Routes>
+      )}
+    </div>
   );
 }
 

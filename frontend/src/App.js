@@ -9,14 +9,19 @@ import ProductDetails from "./component/Product/ProductDetails";
 import Products from "./component/Products/Products";
 import SignIn from "./component/User/SignIn";
 import Registration from "./component/User/Registration";
+import store from "./store";
+import { loadUser } from "./actions/userAction";
 
 function App() {
   useEffect(() => {
     webFont.load({
       families: ["Roboto", "Droid Sans", "Chilanka"],
     });
-  }, []);
+
+    store.dispatch(loadUser());
+  },[]);
   return (
+    
     <Routes>
       <Route
         exact
@@ -24,8 +29,8 @@ function App() {
         element={
           <>
             <Header />
-            <Home />
-            <Footer />
+            {/* <Home />
+            <Footer /> */}
           </>
         }
       />
@@ -93,7 +98,7 @@ function App() {
         element={
           <>
             <Header />
-            <Footer/>
+            <Footer />
           </>
         }
       />

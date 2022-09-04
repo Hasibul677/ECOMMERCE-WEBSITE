@@ -13,15 +13,16 @@ import store from "./store";
 import { loadUser } from "./actions/userAction";
 
 function App() {
+
   useEffect(() => {
     webFont.load({
       families: ["Roboto", "Droid Sans", "Chilanka"],
     });
 
     store.dispatch(loadUser());
-  },[]);
+  }, []);
+
   return (
-    
     <Routes>
       <Route
         exact
@@ -29,8 +30,8 @@ function App() {
         element={
           <>
             <Header />
-            {/* <Home />
-            <Footer /> */}
+            <Home />
+            <Footer />
           </>
         }
       />

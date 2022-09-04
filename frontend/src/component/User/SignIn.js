@@ -14,7 +14,7 @@ const SignIn = () => {
   const dispatch = useDispatch();
   const alert = useAlert();
   const navigate = useNavigate();
-  const {loading, user, error, isAuthenticated } = useSelector(
+  const {loading, error, isAuthenticated } = useSelector(
     (state) => state.user
   );
 
@@ -22,6 +22,7 @@ const SignIn = () => {
     email: "",
     password: "",
   });
+ 
 
   let { email, password } = loginInfo;
 

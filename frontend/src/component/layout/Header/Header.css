@@ -24,9 +24,10 @@
 .menu-child{
   display: none;
   position: absolute;
-  left: -240%;
+  left: -250%;
   top: 0;
   color: whitesmoke;
+  font-family: cursive;
 }
 .menu-parent:hover .menu-child{
   display: block;

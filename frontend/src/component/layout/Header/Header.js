@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import "./Header.css";
 import { Navbar, Nav, Button } from "react-bootstrap";
 import logo from "../../../images/logo.png";
-import { CgProfile } from "react-icons/cg";
+import { GiShoppingCart } from "react-icons/gi";
 import { BiLogOut } from "react-icons/bi";
+import { FcBusinessman, FcExpand } from "react-icons/fc";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Loader from "../../layout/Loader/Loader";
@@ -83,30 +84,24 @@ const Header = () => {
                       setShow(show === "d-none" ? "d-block" : "d-none")
                     }
                   >
-                    <img className="logo" src={user?.avatar?.url} alt="Img" />
+                    <img className="logo" src={user?.avatar?.url} alt="Img" /><FcExpand />
                     <div className={`${show} icon-div mt-3 text-center`}>
+                      <div className="card menu-parent my-2">
+                        <Link to="/profile">
+                          <FcBusinessman className="fs-3 text-dark" />
+                          <span className="menu-child bg-white text-dark px-2 rounded">{user.role === "admin"? "Admin": "Profile"}</span>
+                        </Link>
+                      </div>
+                      <div className="card menu-parent my-2">
+                        <Link to="/profile">
+                          <GiShoppingCart className="fs-3 text-dark" />
+                          <span className="menu-child bg-white text-dark px-2 rounded">Order</span>
+                        </Link>
+                      </div>
                       <div className="card menu-parent my-1">
-                        <Link to="/profile">
-                          <CgProfile className="fs-3" />
-                          <span className="menu-child text-white">Profile</span>
-                        </Link>
-                      </div>
-                      <div className="card menu-parent my-3">
-                        <Link to="/profile">
-                          <CgProfile className="fs-3" />
-                          <span className="menu-child text-white">Profile</span>
-                        </Link>
-                      </div>
-                      <div className="card menu-parent my-3">
-                        <Link to="/profile">
-                          <CgProfile className="fs-3" />
-                          <span className="menu-child text-white">Profile</span>
-                        </Link>
-                      </div>
-                      <div className="card menu-parent my-3">
                         <div onClick={handleLogout}>
                           <BiLogOut className="fs-3" />
-                          <span className="menu-child">Logout</span>
+                          <span className="menu-child bg-white text-dark px-2 rounded">Logout</span>
                         </div>
                       </div>
                     </div>

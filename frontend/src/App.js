@@ -1,5 +1,5 @@
 import "./App.css";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import Header from "./component/layout/Header/Header";
 import webFont from "webfontloader";
 import { useEffect } from "react";
@@ -17,6 +17,7 @@ import NotFound from "./component/layout/NotFound/NotFound";
 import Loader from "./component/layout/Loader/Loader";
 
 function App() {
+  const location = useLocation()
   const { loading, isAuthenticated } = useSelector((state) => state.user);
 
   useEffect(() => {
@@ -26,6 +27,11 @@ function App() {
 
     store.dispatch(loadUser());
   }, []);
+
+  const PrivateRoute = ({children}) => {
+ 
+    return !loading && isAuthenticated ? children : <Navigate to="/login" replace state={{ location }}/>;
+  };
 
   return (
     <div>
@@ -56,6 +62,7 @@ function App() {
             }
           />
           <Route
+            exact
             path="/product/:id"
             element={
               <>
@@ -66,6 +73,7 @@ function App() {
             }
           />
           <Route
+            exact
             path="/products"
             element={
               <>
@@ -76,6 +84,7 @@ function App() {
             }
           />
           <Route
+            exact
             path="/products/:keyword"
             element={
               <>
@@ -86,6 +95,7 @@ function App() {
             }
           />
           <Route
+            exact
             path="/login"
             element={
               <>
@@ -95,6 +105,7 @@ function App() {
             }
           />
           <Route
+            exact
             path="/registration"
             element={
               <>
@@ -103,18 +114,19 @@ function App() {
               </>
             }
           />
-          {isAuthenticated && (
-            <Route
-              path="/profile"
-              element={
-                <>
-                  <Header />
-                  <Profile />
-                  <Footer />
-                </>
-              }
-            />
-          )}
+
+          <Route
+            exact
+            path="/profile"
+            element={
+              <PrivateRoute>
+                <Header />
+                <Profile />
+                <Footer />
+              </PrivateRoute>
+            }
+          />
+       
           <Route
             path="*"
             element={

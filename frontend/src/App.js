@@ -15,6 +15,7 @@ import Profile from "./component/User/Profile";
 import { useSelector } from "react-redux";
 import NotFound from "./component/layout/NotFound/NotFound";
 import Loader from "./component/layout/Loader/Loader";
+import UpdateProfile from "./component/User/UpdateProfile";
 
 function App() {
   const location = useLocation()
@@ -122,6 +123,17 @@ function App() {
               <PrivateRoute>
                 <Header />
                 <Profile />
+                <Footer />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            exact
+            path="/me/update"
+            element={
+              <PrivateRoute>
+                <Header />
+                <UpdateProfile/>
                 <Footer />
               </PrivateRoute>
             }

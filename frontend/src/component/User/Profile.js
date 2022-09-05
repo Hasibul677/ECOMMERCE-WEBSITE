@@ -56,7 +56,6 @@ const Profile = () => {
                     <button
                       className="glow-on-hover text-style mb-2"
                       type="button"
-                      onc
                     >
                       CHANGE PASSWORD
                     </button></Link>

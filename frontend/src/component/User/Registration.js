@@ -14,7 +14,7 @@ import Loader from "../../component/layout/Loader/Loader";
 
 const Registration = () => {
   const dispatch = useDispatch();
-  const { loading, error, isAuthenticated } = useSelector(
+  const { loading, error } = useSelector(
     (state) => state.user
   );
 
@@ -39,7 +39,7 @@ const Registration = () => {
           setRegisterInfo(info);
         }
       };
-
+      
       reader.readAsDataURL(e.target.files[0]);
     } else {
       let info = { ...registerInfo };

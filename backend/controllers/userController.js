@@ -165,9 +165,19 @@ exports.updatePassword = catchAsyncErrors(async (req, res, next) => {
 
 // Update User Profile
 exports.updateProfile = catchAsyncErrors(async (req, res, next) => {
+  const myCloud = await cloudinary.v2.uploader.upload(req.body.avatar, {
+    folder: "avatars",
+    width: 150,
+    crop: "scale",
+  });
+
   const newUserData = {
     name: req.body.name,
     email: req.body.email,
+    avatar: {
+      public_id: myCloud.public_id,
+      url: myCloud.secure_url,
+    },
   };
 
   //we will add cloudinary later

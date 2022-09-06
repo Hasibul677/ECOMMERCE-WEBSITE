@@ -5,7 +5,7 @@ import loginImg from "../../images/avatar/login.png";
 import { FaRegUser } from "react-icons/fa";
 import { HiOutlineMail } from "react-icons/hi";
 import { useDispatch, useSelector } from "react-redux";
-import { updateProfile, clearError } from "../../actions/userAction";
+import { updateProfile, clearError, loadUser } from "../../actions/userAction";
 import { useAlert } from "react-alert";
 import Loader from "../../component/layout/Loader/Loader";
 import { useNavigate } from "react-router-dom";
@@ -14,7 +14,8 @@ const UpdateProfile = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate()
   const alert = useAlert();
-  const { loading, error, user } = useSelector((state) => state.user);
+  const { user } = useSelector((state) => state.user);
+  const { error, isUpdated, loading } = useSelector((state) => state.profile);
   const [avatar, setAvatar] = useState(user?.avatar?.url);
   const [updateInfo, setUpdateInfo] = useState({
     name: user?.name,
@@ -46,8 +47,6 @@ const UpdateProfile = () => {
   const handleRegister = (e) => {
     e.preventDefault(); 
     dispatch(updateProfile(updateInfo));
-    alert.success("Update Succesfully!")
-    navigate("/profile")
   };
 
   useEffect(() => {
@@ -55,7 +54,12 @@ const UpdateProfile = () => {
       alert.error(error);
       dispatch(clearError());
     }
-  }, [dispatch, error, alert]);
+    if(isUpdated){
+      alert.success("Profile Updated");
+      dispatch(loadUser());
+      navigate("/profile")
+    }
+  }, [dispatch, error, alert, isUpdated, navigate]);
   return (
     <div>
       {loading ? <Loader/>:<Container className="marginTop">

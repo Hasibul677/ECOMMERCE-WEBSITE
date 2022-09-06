@@ -110,6 +110,7 @@ export const updateProfile = (userData) => async (dispatch) => {
       config
     );
 
+    dispatch({ type: UPDATE_PROFILE_RESET, payload: null });
     dispatch({ type: UPDATE_PROFILE_SUCCESS, payload: data.user });
   } catch (error) {
     dispatch({

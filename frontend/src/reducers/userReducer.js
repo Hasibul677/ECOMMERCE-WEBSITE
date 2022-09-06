@@ -93,17 +93,17 @@ export const profileReducer = (state = {}, action) => {
         isUpdated: action.payload,
       };
 
+    case UPDATE_PROFILE_RESET:
+      return {
+        ...state,
+        isUpdated: false,
+      };
+
     case UPDATE_PROFILE_FAIL:
       return {
         ...state,
         loading: false,
         error: action.payload,
-      };
-
-    case UPDATE_PROFILE_RESET:
-      return {
-        ...state,
-        isUpdated: false,
       };
 
     case CLEAR_ERROR:

@@ -34,10 +34,11 @@ const UpdateProfile = () => {
           setAvatar(reader.result);
           let info = { ...updateInfo };
           info[e.target.name] = reader.result;
-          if (e.target.files[0].size <= 75000) {
+          console.log(e.target.files[0].size);
+          if (e.target.files[0].size <= 70000) {
             setUpdateInfo(info);
           } else {
-            swal("File size should be less or equal 75KB!");
+            swal("File size should be less or equal 70KB!");
           }
         }
       };

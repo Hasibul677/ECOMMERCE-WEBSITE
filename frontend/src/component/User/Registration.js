@@ -36,10 +36,10 @@ const Registration = () => {
           let info = { ...registerInfo };
           info[e.target.name] = reader.result;
 
-          if (e.target.files[0].size <= 75000) {
+          if (e.target.files[0].size <= 70000) {
             setRegisterInfo(info);
           } else {
-            swal("File size should be less or equal 75KB!");
+            swal("File size should be less or equal 70KB!");
           }
         }
       };

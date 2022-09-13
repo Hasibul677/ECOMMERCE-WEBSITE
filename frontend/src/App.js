@@ -16,6 +16,7 @@ import { useSelector } from "react-redux";
 import NotFound from "./component/layout/NotFound/NotFound";
 import Loader from "./component/layout/Loader/Loader";
 import UpdateProfile from "./component/User/UpdateProfile";
+import ChangePassword from "./component/User/ChangePassword";
 
 function App() {
   const location = useLocation()
@@ -135,6 +136,16 @@ function App() {
                 <Header />
                 <UpdateProfile/>
                 <Footer />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            exact
+            path="/changePassword"
+            element={
+              <PrivateRoute>
+                <Header />
+                <ChangePassword/>
               </PrivateRoute>
             }
           />

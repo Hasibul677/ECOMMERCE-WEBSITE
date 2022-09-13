@@ -11,12 +11,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { register, clearError } from "../../actions/userAction";
 import { useAlert } from "react-alert";
 import Loader from "../../component/layout/Loader/Loader";
+import swal from "sweetalert";
 
 const Registration = () => {
   const dispatch = useDispatch();
-  const { loading, error } = useSelector(
-    (state) => state.user
-  );
+  const { loading, error } = useSelector((state) => state.user);
 
   const alert = useAlert();
   const [avatar, setAvatar] = useState(profile);
@@ -36,10 +35,15 @@ const Registration = () => {
           setAvatar(reader.result);
           let info = { ...registerInfo };
           info[e.target.name] = reader.result;
-          setRegisterInfo(info);
+
+          if (e.target.files[0].size <= 75000) {
+            setRegisterInfo(info);
+          } else {
+            swal("File size should be less or equal 75KB!");
+          }
         }
       };
-      
+
       reader.readAsDataURL(e.target.files[0]);
     } else {
       let info = { ...registerInfo };

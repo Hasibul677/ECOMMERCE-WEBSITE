@@ -10,6 +10,7 @@ import { useAlert } from "react-alert";
 import Loader from "../../component/layout/Loader/Loader";
 import { useNavigate } from "react-router-dom";
 import { UPDATE_PROFILE_RESET } from "../../constants/userConstant";
+import swal from "sweetalert";
 
 const UpdateProfile = () => {
   const dispatch = useDispatch();
@@ -21,7 +22,7 @@ const UpdateProfile = () => {
   const [updateInfo, setUpdateInfo] = useState({
     name: user?.name,
     email: user?.email,
-    avatar: ""
+    avatar: "",
   });
 
   const handleChange = (e) => {
@@ -33,10 +34,13 @@ const UpdateProfile = () => {
           setAvatar(reader.result);
           let info = { ...updateInfo };
           info[e.target.name] = reader.result;
-          setUpdateInfo(info);
+          if (e.target.files[0].size <= 75000) {
+            setUpdateInfo(info);
+          } else {
+            swal("File size should be less or equal 75KB!");
+          }
         }
       };
-
       reader.readAsDataURL(e.target.files[0]);
     } else {
       let info = { ...updateInfo };

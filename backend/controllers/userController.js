@@ -9,7 +9,7 @@ const cloudinary = require("cloudinary");
 exports.registerUser = catchAsyncErrors(async (req, res, next) => {
   const myCloud = await cloudinary.v2.uploader.upload(req.body.avatar, {
     folder: "avatars",
-    width: 150,
+    width: "auto",
     crop: "scale",
   });
   const { name, email, password } = req.body;
@@ -179,7 +179,7 @@ exports.updateProfile = catchAsyncErrors(async (req, res, next) => {
 
     const myCloud = await cloudinary.v2.uploader.upload(req.body.avatar, {
       folder: "avatars",
-      width: 150,
+      width: "auto",
       crop: "scale",
     });
 

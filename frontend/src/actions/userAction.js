@@ -13,7 +13,6 @@ import {
   LOGOUT_FAIL,
   UPDATE_PROFILE_REQUEST,
   UPDATE_PROFILE_SUCCESS,
-  UPDATE_PROFILE_RESET,
   UPDATE_PROFILE_FAIL,
   CLEAR_ERROR,
 } from "../constants/userConstant";
@@ -110,7 +109,6 @@ export const updateProfile = (userData) => async (dispatch) => {
       config
     );
 
-    dispatch({ type: UPDATE_PROFILE_RESET, payload: null });
     dispatch({ type: UPDATE_PROFILE_SUCCESS, payload: data.user });
   } catch (error) {
     dispatch({

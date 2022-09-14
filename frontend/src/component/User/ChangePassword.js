@@ -5,11 +5,10 @@ import "./ChangePassword.css";
 const ChangePassword = () => {
   return (
     <div className="changePass">
-      <Row className="g-0 d-flex align-items-center justify-content-center">
-        <Col md={6} className="card p-4 changePassTop">
+      <Row className="g-0 d-flex align-items-center justify-content-center px-2 px-md-0">
+        <Col md={4} className="card p-4 changePassTop shadow-lg ">
           <Form>
             <h4 className="text-style mb-4">Change Your Password</h4>
-
             <div className="inputparent mt-2">
               <Form.Control
                 className="ps-5"

@@ -28,7 +28,7 @@ const Registration = () => {
 
   const handleChange = (e) => {
     if (e.target.name === "avatar") {
-      if (e.target.files[0].size <= 70000) {
+      if (e.target.files[0].size <= 2097152) {
         const reader = new FileReader();
         reader.onload = () => {
           if (reader.readyState === 2) {
@@ -40,7 +40,7 @@ const Registration = () => {
         };
         reader.readAsDataURL(e.target.files[0]);
       } else {
-        swal("File size should be less or equal 70KB!");
+        swal("File size should be less or equal 2MB!");
       }
     } else {
       let info = { ...registerInfo };

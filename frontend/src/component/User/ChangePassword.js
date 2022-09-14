@@ -1,14 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
 import { TbLock } from "react-icons/tb";
 import "./ChangePassword.css";
 const ChangePassword = () => {
+  const [password, setPassword] = useState("")
   return (
     <div className="changePass">
       <Row className="g-0 d-flex align-items-center justify-content-center px-2 px-md-0">
         <Col md={4} className="card p-4 changePassTop shadow-lg ">
           <Form>
             <h4 className="text-style mb-4">Change Your Password</h4>
+            <div className="inputparent mt-2">
+              <Form.Control
+                className="ps-5"
+                required
+                type="password"
+                name="oldPass"
+                placeholder="Old Password"
+              />
+              <TbLock className="inputchild" />
+            </div>
             <div className="inputparent mt-2">
               <Form.Control
                 className="ps-5"

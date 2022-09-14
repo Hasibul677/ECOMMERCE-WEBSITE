@@ -2,12 +2,15 @@ import React, { useEffect, useState } from "react";
 import { useAlert } from "react-alert";
 import { Button, Col, Form, Row } from "react-bootstrap";
 import { TbLock } from "react-icons/tb";
+import { BsKey } from "react-icons/bs";
+import { HiLockOpen } from "react-icons/hi";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { clearError, loadUser, updatePassword } from "../../actions/userAction";
 import { UPDATE_PASSWORD_RESET } from "../../constants/userConstant";
 import Loader from "../layout/Loader/Loader";
 import "./ChangePassword.css";
+import MetaDeta from "../layout/MetaDeta";
 const ChangePassword = () => {
   const { error, isUpdated, loading } = useSelector((state) => state.profile);
   const dispatch = useDispatch();
@@ -51,24 +54,25 @@ const ChangePassword = () => {
         <Loader />
       ) : (
         <div className="changePass">
+          <MetaDeta title={`Change Password`} />
           <Row className="g-0 d-flex align-items-center justify-content-center px-2 px-md-0">
             <Col md={4} className="card p-4 changePassTop shadow-lg ">
               <Form onSubmit={handleSubmit}>
                 <h4 className="text-style mb-4">Change Your Password</h4>
                 <div className="inputparent mt-2">
                   <Form.Control
-                    className="ps-5"
+                    className="ps-5 text-style"
                     required
                     type="password"
                     name="oldPassword"
                     onChange={handleChange}
                     placeholder="Old Password"
                   />
-                  <TbLock className="inputchild" />
+                  <BsKey className="inputchild" />
                 </div>
                 <div className="inputparent mt-2">
                   <Form.Control
-                    className="ps-5"
+                    className="ps-5 text-style"
                     required
                     type="password"
                     name="newPassword"
@@ -79,14 +83,14 @@ const ChangePassword = () => {
                 </div>
                 <div className="inputparent my-2">
                   <Form.Control
-                    className="ps-5"
+                    className="ps-5 text-style"
                     required
                     type="password"
                     name="confirmPassword"
                     onChange={handleChange}
                     placeholder="Confirm Password"
                   />
-                  <TbLock className="inputchild" />
+                  <HiLockOpen className="inputchild" />
                 </div>
                 <div className="d-flex justify-content-end">
                   <Button

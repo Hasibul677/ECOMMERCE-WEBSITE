@@ -11,6 +11,7 @@ import Loader from "../../component/layout/Loader/Loader";
 import { useNavigate } from "react-router-dom";
 import { UPDATE_PROFILE_RESET } from "../../constants/userConstant";
 import swal from "sweetalert";
+import MetaDeta from "../layout/MetaDeta";
 
 const UpdateProfile = () => {
   const dispatch = useDispatch();
@@ -74,6 +75,7 @@ const UpdateProfile = () => {
         <Loader />
       ) : (
         <Container className="marginTop">
+          <MetaDeta title={`Update Profile`} />
           <Row className="d-md-flex align-items-center">
             <Col md={4}>
               <img className="img-login" src={loginImg} alt="img" />

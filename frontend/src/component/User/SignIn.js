@@ -116,7 +116,7 @@ const SignIn = () => {
                       style={{ fontFamily: "cursive" }}
                       className="text-muted fs-6"
                     >
-                      <Link className="text-decoration-none" to="/login">
+                      <Link className="text-decoration-none" to="/password/forgot">
                         Forgot Password ?
                       </Link>
                     </Form.Text>

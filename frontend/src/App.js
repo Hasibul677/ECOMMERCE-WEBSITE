@@ -17,6 +17,7 @@ import NotFound from "./component/layout/NotFound/NotFound";
 import Loader from "./component/layout/Loader/Loader";
 import UpdateProfile from "./component/User/UpdateProfile";
 import ChangePassword from "./component/User/ChangePassword";
+import ForgotPassword from "./component/User/ForgotPassword";
 
 function App() {
   const location = useLocation()
@@ -147,6 +148,16 @@ function App() {
                 <Header />
                 <ChangePassword/>
               </PrivateRoute>
+            }
+          />
+          <Route
+            exact
+            path="/password/forgot"
+            element={
+              <>
+                <Header />
+                <ForgotPassword/>
+              </>
             }
           />
        

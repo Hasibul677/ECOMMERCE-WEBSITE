@@ -28,23 +28,20 @@ const Registration = () => {
 
   const handleChange = (e) => {
     if (e.target.name === "avatar") {
-      const reader = new FileReader();
-
-      reader.onload = () => {
-        if (reader.readyState === 2) {
-          setAvatar(reader.result);
-          let info = { ...registerInfo };
-          info[e.target.name] = reader.result;
-
-          if (e.target.files[0].size <= 70000) {
+      if (e.target.files[0].size <= 70000) {
+        const reader = new FileReader();
+        reader.onload = () => {
+          if (reader.readyState === 2) {
+            setAvatar(reader.result);
+            let info = { ...registerInfo };
+            info[e.target.name] = reader.result;
             setRegisterInfo(info);
-          } else {
-            swal("File size should be less or equal 70KB!");
           }
-        }
-      };
-
-      reader.readAsDataURL(e.target.files[0]);
+        };
+        reader.readAsDataURL(e.target.files[0]);
+      } else {
+        swal("File size should be less or equal 70KB!");
+      }
     } else {
       let info = { ...registerInfo };
       info[e.target.name] = e.target.value;

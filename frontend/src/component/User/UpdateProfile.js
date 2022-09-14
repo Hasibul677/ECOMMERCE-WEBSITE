@@ -27,22 +27,20 @@ const UpdateProfile = () => {
 
   const handleChange = (e) => {
     if (e.target.name === "avatar") {
-      const reader = new FileReader();
-
-      reader.onload = () => {
-        if (reader.readyState === 2) {
-          setAvatar(reader.result);
-          let info = { ...updateInfo };
-          info[e.target.name] = reader.result;
-          console.log(e.target.files[0].size);
-          if (e.target.files[0].size <= 70000) {
+      if (e.target.files[0].size <= 70000) {
+        const reader = new FileReader();
+        reader.onload = () => {
+          if (reader.readyState === 2) {
+            setAvatar(reader.result);
+            let info = { ...updateInfo };
+            info[e.target.name] = reader.result;
             setUpdateInfo(info);
-          } else {
-            swal("File size should be less or equal 70KB!");
           }
-        }
-      };
-      reader.readAsDataURL(e.target.files[0]);
+        };
+        reader.readAsDataURL(e.target.files[0]);
+      } else {
+        swal("File size should be less or equal 70KB!");
+      }
     } else {
       let info = { ...updateInfo };
       info[e.target.name] = e.target.value;
@@ -69,6 +67,7 @@ const UpdateProfile = () => {
       });
     }
   }, [dispatch, error, alert, isUpdated, navigate]);
+
   return (
     <div>
       {loading ? (

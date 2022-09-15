@@ -21,8 +21,6 @@ const ForgotPassword = () => {
         <Form className="forgotForm">
           <h4>
             Just provide your email
-            <br />
-            and we can do the rest
           </h4>
           <Form.Group className="forgotGroup">
             <input type="email" name="email" />

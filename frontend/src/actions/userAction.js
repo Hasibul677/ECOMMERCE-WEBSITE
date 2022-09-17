@@ -147,7 +147,7 @@ export const updatePassword = (passwords) => async (dispatch) => {
 export const forgotPassword = (email) => async (dispatch) => {
   try {
     dispatch({ type: FORGOT_PASSWORD_REQUEST });
-    const { data } = await axios.put(
+    const { data } = await axios.post(
       `http://localhost:4000/api/v1/password/forgot`,
       email,
       config

@@ -3,13 +3,20 @@ import "./ForgotPassword.css";
 import MetaDeta from "../layout/MetaDeta";
 import { Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { forgotPassword } from "../../actions/userAction";
 
 const ForgotPassword = () => {
-  const [email, setEmail] = useState({email:""});
+  const dispatch = useDispatch();
+  const [email, setEmail] = useState({ email: "" });
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(email);
+    if (email !== "") {
+      dispatch(forgotPassword(email));
+    }
   };
+  
   return (
     <div className="bg-dark">
       <MetaDeta title={`FORGOT PASSWORD`} />
@@ -24,10 +31,10 @@ const ForgotPassword = () => {
               name="email"
               onChange={(e) => setEmail({ email: e.target.value })}
             />
-              <label className="mailLavel" htmlFor="email">
-                <br />
-                Email
-              </label>
+            <label className="mailLavel" htmlFor="email">
+              <br />
+              Email
+            </label>
             <span className="mailText">provide your email</span>
           </Form.Group>
 

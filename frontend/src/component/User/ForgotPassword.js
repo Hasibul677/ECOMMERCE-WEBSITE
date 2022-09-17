@@ -20,7 +20,7 @@ const ForgotPassword = () => {
         <h2 className="titleText">Don't Worry!</h2>
         <Form className="forgotForm">
           <h4>
-            Just provide your emails
+            Just provide your email
           </h4>
           <Form.Group className="forgotGroup">
             <input type="email" name="email" />

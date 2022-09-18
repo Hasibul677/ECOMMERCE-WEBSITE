@@ -23,7 +23,7 @@ const ForgotPassword = () => {
       <div className="container-center">
         <Form className="forgotForm" onSubmit={handleSubmit}>
           <h4 className="text-style mb-3 text-center">
-            Forgot Password? Don't Worry!
+            Don't Worry!
           </h4>
           <Form.Group className="forgotGroup">
             <input

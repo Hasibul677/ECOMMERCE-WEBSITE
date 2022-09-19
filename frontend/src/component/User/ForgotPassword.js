@@ -1,13 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./ForgotPassword.css";
 import MetaDeta from "../layout/MetaDeta";
 import { Form } from "react-bootstrap";
-import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { forgotPassword } from "../../actions/userAction";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { clearError, forgotPassword } from "../../actions/userAction";
+import { useAlert } from "react-alert";
+import Loader from "../layout/Loader/Loader";
 
 const ForgotPassword = () => {
+  const { error, loading, message } = useSelector(state => state.forgotPassword);
   const dispatch = useDispatch();
+  const alert = useAlert();
+  const navigate = useNavigate();
   const [email, setEmail] = useState({ email: "" });
 
   const handleSubmit = (e) => {
@@ -16,9 +21,18 @@ const ForgotPassword = () => {
       dispatch(forgotPassword(email));
     }
   };
-  
+
+  useEffect(() => {
+    if (error) {
+      alert.error(error);
+      dispatch(clearError());
+    }
+    alert.success(message);
+    navigate("/login");
+  }, [alert, error, dispatch])
+
   return (
-    <div className="bg-dark">
+    <div>{loading ? <Loader /> : <div className="bg-dark">
       <MetaDeta title={`FORGOT PASSWORD`} />
       <div className="container-center">
         <Form className="forgotForm" onSubmit={handleSubmit}>
@@ -50,7 +64,7 @@ const ForgotPassword = () => {
           </Link>
         </p>
       </div>
-    </div>
+    </div>}</div>
   );
 };
 

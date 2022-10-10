@@ -13,7 +13,7 @@ const sendToken = async (user, statusCode, res) => {
 
   res.cookie("token", token, options).status(statusCode).json({
     success: true,
-    user,
+    user
   });
 
 

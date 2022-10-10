@@ -18,6 +18,7 @@ import Loader from "./component/layout/Loader/Loader";
 import UpdateProfile from "./component/User/UpdateProfile";
 import ChangePassword from "./component/User/ChangePassword";
 import ForgotPassword from "./component/User/ForgotPassword";
+import ResetPassword from "./component/User/ResetPassword";
 
 function App() {
   const location = useLocation()
@@ -157,6 +158,16 @@ function App() {
               <>
                 <Header />
                 <ForgotPassword/>
+              </>
+            }
+          />
+          <Route
+            exact
+            path="/password/reset/:token"
+            element={
+              <>
+                <Header />
+                <ResetPassword/>
               </>
             }
           />

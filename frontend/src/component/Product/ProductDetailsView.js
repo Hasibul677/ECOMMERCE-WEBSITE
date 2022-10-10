@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import ReactStars from "react-rating-stars-component";
 import { IoMdAdd } from "react-icons/io";
 import { GrFormSubtract } from "react-icons/gr";
 import { BsCart4 } from "react-icons/bs";
 import { Button, Col, Row } from "react-bootstrap";
 import Carousel from "react-multi-carousel";
+import { addItemToCart } from "../../actions/cartAction";
+import { useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
+import { useAlert } from "react-alert";
 
 const responsive = {
   desktop: {
@@ -32,6 +36,26 @@ const ProductDetailsView = ({ product }) => {
     value: product?.ratings,
     isHalf: true,
   };
+  const dispatch = useDispatch();
+  const { id } = useParams();
+  const alert = useAlert();
+  const [quantity, setQuantity] = useState(1);
+
+  const increaseQuantity = () => {
+    if (product.stock <= quantity) return;
+    let qty = quantity + 1;
+    setQuantity(qty);
+  };
+  const decreaseQuantity = () => {
+    if (1 >= quantity) return;
+    let qty = quantity - 1;
+    setQuantity(qty);
+  };
+  const addToCartHandler = () => {
+    dispatch(addItemToCart(id, quantity));
+    alert.success("Item Added To Cart");
+  };
+
   return (
     <Row className="productDetails g-0 p-3 p-md-5 text-center text-md-start">
       <Col md={6} className="text-center">
@@ -69,20 +93,28 @@ const ProductDetailsView = ({ product }) => {
         <div className="mt-4">
           <h4>{product?.price} Tk</h4>
           <div className="rating py-4">
-            <Button className="card bg-light border p-2">
+            <Button
+              onClick={decreaseQuantity}
+              className="card bg-light border p-2"
+            >
               <GrFormSubtract />
             </Button>
             <input
               className="text-center mx-2 stockInput p-1 fw-bold"
-              type="text"
-              defaultValue={product?.stock}
+              value={quantity}
               disabled
             />
-            <Button className="card bg-light border p-2">
+            <Button
+              onClick={increaseQuantity}
+              className="card bg-light border p-2"
+            >
               <IoMdAdd className="text-dark" />
             </Button>
 
-            <Button className="ms-4 rounded-pill fw-bold cartBtn p-1 px-3 d-flex align-items-center">
+            <Button
+              onClick={addToCartHandler}
+              className="ms-4 rounded-pill fw-bold cartBtn p-1 px-3 d-flex align-items-center"
+            >
               <BsCart4 className="fs-5" /> <div className="ms-1">Cart</div>
             </Button>
           </div>

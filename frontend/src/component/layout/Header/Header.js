@@ -3,27 +3,28 @@ import "./Header.css";
 import { Navbar, Nav, Button } from "react-bootstrap";
 import logo from "../../../images/logo.png";
 import { GiShoppingCart } from "react-icons/gi";
+import { FaShopify } from "react-icons/fa";
 import { BiLogOut } from "react-icons/bi";
 import { FcBusinessman, FcExpand } from "react-icons/fc";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Loader from "../../layout/Loader/Loader";
 import { useDispatch } from "react-redux";
-import {useAlert} from "react-alert"
-import {useNavigate} from "react-router-dom"
+import { useAlert } from "react-alert";
+import { useNavigate } from "react-router-dom";
 import { logout } from "../../../actions/userAction";
 
 const Header = () => {
   const dispatch = useDispatch();
-  const alert = useAlert()
-  const navigate = useNavigate()
+  const alert = useAlert();
+  const navigate = useNavigate();
   const { loading, user, isAuthenticated } = useSelector((state) => state.user);
   const [show, setShow] = useState("d-none");
 
   const handleLogout = () => {
     dispatch(logout());
-    alert.success("Logout!")
-    navigate("/")
+    alert.success("Logout!");
+    navigate("/");
   };
 
   return (
@@ -84,29 +85,41 @@ const Header = () => {
                       setShow(show === "d-none" ? "d-block" : "d-none")
                     }
                   >
-                    <img className="logo" src={user?.avatar?.url} alt="Img" /><FcExpand />
+                    <img className="logo" src={user?.avatar?.url} alt="Img" />
+                    <FcExpand />
                     <div className={`${show} icon-div mt-3 text-center`}>
                       <div className="card menu-parent my-2">
                         <Link to="/profile">
                           <FcBusinessman className="fs-3 text-dark" />
-                          <span className="menu-child bg-white text-dark px-2 rounded">{user.role === "admin"? "Admin": "Profile"}</span>
+                          <span className="menu-child bg-white text-dark px-2 rounded">
+                            {user.role === "admin" ? "Admin" : "Profile"}
+                          </span>
                         </Link>
                       </div>
                       <div className="card menu-parent my-2">
                         <Link to="/profile">
                           <GiShoppingCart className="fs-3 text-dark" />
-                          <span className="menu-child bg-white text-dark px-2 rounded">Order</span>
+                          <span className="menu-child bg-white text-dark px-2 rounded">
+                            Order
+                          </span>
                         </Link>
                       </div>
                       <div className="card menu-parent my-1">
                         <div onClick={handleLogout}>
                           <BiLogOut className="fs-3" />
-                          <span className="menu-child bg-white text-dark px-2 rounded">Logout</span>
+                          <span className="menu-child bg-white text-dark px-2 rounded">
+                            Logout
+                          </span>
                         </div>
                       </div>
                     </div>
                   </div>
                 )}
+
+                <Link className="mt-3 mb-1 text-decoration-none cartMenu" to="/cart">
+                  <FaShopify className="fs-2 me-md-5 text-danger" />
+                  <p className="text-center cartItem p-1 fs-5">0</p>
+                </Link>
 
                 {!isAuthenticated && (
                   <Link className="mt-3 mb-1" to="/login">

@@ -19,6 +19,7 @@ import UpdateProfile from "./component/User/UpdateProfile";
 import ChangePassword from "./component/User/ChangePassword";
 import ForgotPassword from "./component/User/ForgotPassword";
 import ResetPassword from "./component/User/ResetPassword";
+import Cart from "./component/Cart/Cart";
 
 function App() {
   const location = useLocation()
@@ -168,6 +169,16 @@ function App() {
               <>
                 <Header />
                 <ResetPassword/>
+              </>
+            }
+          />
+          <Route
+            exact
+            path="/cart"
+            element={
+              <>
+                <Header />
+                <Cart/>
               </>
             }
           />

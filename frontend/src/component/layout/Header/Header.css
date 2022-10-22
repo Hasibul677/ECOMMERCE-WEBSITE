@@ -1,27 +1,27 @@
 .logo {
-    height: 50px;
-    width: 50px;
-    border-radius: 50%;
-  }
-.menu-text{
- border-bottom: 2px solid #f8f9fa;
- font-family: cursive;
- transition: all 1s ease-in-out;
-}  
-.menu-text:hover{
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+}
+.menu-text {
+  border-bottom: 2px solid #f8f9fa;
+  font-family: cursive;
+  transition: all 1s ease-in-out;
+}
+.menu-text:hover {
   color: blue !important;
- border-bottom: 2px solid rgb(0, 217, 255);
- transition: all .5s ease-in-out;
+  border-bottom: 2px solid rgb(0, 217, 255);
+  transition: all 0.5s ease-in-out;
 }
-.icon-parent{
+.icon-parent {
   position: relative;
   cursor: pointer;
 }
-.menu-parent{
+.menu-parent {
   position: relative;
   cursor: pointer;
 }
-.menu-child{
+.menu-child {
   display: none;
   position: absolute;
   left: -250%;
@@ -29,11 +29,21 @@
   color: whitesmoke;
   font-family: cursive;
 }
-.menu-parent:hover .menu-child{
+.menu-parent:hover .menu-child {
   display: block;
 }
-.icon-div{
+.icon-div {
   position: absolute;
   left: 25%;
   z-index: 1;
+}
+.cartMenu {
+  position: relative;
+}
+.cartItem {
+  position: absolute;
+  top: -15px;
+  left: 18px;
+  height: 28px;
+  width: 28px;
 }

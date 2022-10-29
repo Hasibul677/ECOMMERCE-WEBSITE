@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./LoginSignUp.css";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import loginImg from "../../images/avatar/login.png";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { HiOutlineMail } from "react-icons/hi";
 import { TbLock } from "react-icons/tb";
 import { useDispatch, useSelector } from "react-redux";
@@ -14,7 +14,8 @@ const SignIn = () => {
   const dispatch = useDispatch();
   const alert = useAlert();
   const navigate = useNavigate();
-  const {loading, error, isAuthenticated } = useSelector(
+  const location = useLocation();
+  const { loading, error, isAuthenticated } = useSelector(
     (state) => state.user
   );
 
@@ -22,7 +23,6 @@ const SignIn = () => {
     email: "",
     password: "",
   });
- 
 
   let { email, password } = loginInfo;
 
@@ -32,15 +32,18 @@ const SignIn = () => {
     setLoginInfo(info);
   };
 
+  const redirect = location.search.split("=")[1]
+    ? location.search.split("=")[1]
+    : "/profile";
   useEffect(() => {
     if (error) {
       alert.error(error);
       dispatch(clearError());
     }
     if (isAuthenticated) {
-      navigate("/profile");
+      navigate(redirect);
     }
-  }, [dispatch, error, alert, isAuthenticated, navigate]);
+  }, [dispatch, error, alert, isAuthenticated, navigate, redirect]);
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -116,7 +119,10 @@ const SignIn = () => {
                       style={{ fontFamily: "cursive" }}
                       className="text-muted fs-6"
                     >
-                      <Link className="text-decoration-none" to="/password/forgot">
+                      <Link
+                        className="text-decoration-none"
+                        to="/password/forgot"
+                      >
                         Forgot Password ?
                       </Link>
                     </Form.Text>

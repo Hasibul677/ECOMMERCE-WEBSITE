@@ -97,8 +97,8 @@ const Cart = () => {
               </table>
             </div>
           </Col>
-          <Col md={4}>
-            <CartItemCard />
+          <Col md={4} className="px-3">
+            <CartItemCard cartItems={cartItems}/>
           </Col>
         </Row>
       ) : (

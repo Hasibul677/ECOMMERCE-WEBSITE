@@ -120,18 +120,6 @@ const Header = () => {
                 )}
 
                 {!isAuthenticated && (
-                  <Link
-                    className="mt-3 mb-1 text-decoration-none cartMenu"
-                    to="/cart"
-                  >
-                    <BsCart4 className="fs-2 me-md-5 text-danger" />
-                    <p className="rounded-circle text-white text-center cartItem px-1 pb-3 fs-5">
-                      {cartItems?.length > 0 ? cartItems?.length : 0}
-                    </p>
-                  </Link>
-                )}
-
-                {!isAuthenticated && (
                   <Link className="mt-3 mb-1" to="/login">
                     <Button className="bg-light text-dark fw-bold">
                       Login

@@ -42,6 +42,7 @@
 }
 .cartItem {
   position: absolute;
+  background-color: rgb(220, 192, 157);
   top: -15px;
   left: 18px;
   height: 28px;

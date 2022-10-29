@@ -3,7 +3,7 @@ import "./Header.css";
 import { Navbar, Nav, Button } from "react-bootstrap";
 import logo from "../../../images/logo.png";
 import { GiShoppingCart } from "react-icons/gi";
-import { FaShopify } from "react-icons/fa";
+import { BsCart4 } from "react-icons/bs";
 import { BiLogOut } from "react-icons/bi";
 import { FcBusinessman, FcExpand } from "react-icons/fc";
 import { Link } from "react-router-dom";
@@ -19,6 +19,7 @@ const Header = () => {
   const alert = useAlert();
   const navigate = useNavigate();
   const { loading, user, isAuthenticated } = useSelector((state) => state.user);
+  const {cartItems} = useSelector(state=> state.cart)
   const [show, setShow] = useState("d-none");
 
   const handleLogout = () => {
@@ -26,6 +27,7 @@ const Header = () => {
     alert.success("Logout!");
     navigate("/");
   };
+
 
   return (
     <div>
@@ -116,9 +118,14 @@ const Header = () => {
                   </div>
                 )}
 
-                <Link className="mt-3 mb-1 text-decoration-none cartMenu" to="/cart">
-                  <FaShopify className="fs-2 me-md-5 text-danger" />
-                  <p className="text-center cartItem p-1 fs-5">0</p>
+                <Link
+                  className="mt-3 mb-1 text-decoration-none cartMenu"
+                  to="/cart"
+                >
+                  <BsCart4 className="fs-2 me-md-5 text-danger" />
+                  <p className="rounded-circle text-white text-center cartItem px-1 pb-3 fs-5">
+                    {cartItems?.length > 0 ? cartItems?.length : 0}
+                  </p>
                 </Link>
 
                 {!isAuthenticated && (

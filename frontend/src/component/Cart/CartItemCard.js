@@ -26,10 +26,14 @@ const CartItemCard = ({ cartItems }) => {
 
   return (
     <Row className="gx-0 mt-4">
-      <Col md={12} className="card shadow p-4">
+      <Col md={12} className="card shadow py-5 px-4">
         <div className="text-center">
           <h4>Checkout Summary</h4>
           <hr className="text-secondary" />
+        </div>
+        <div className="d-flex justify-content-between">
+          <h6>Items</h6>
+          <h6>( {cartItems.length} )</h6>
         </div>
         <div className="d-flex justify-content-between">
           <h6> Amount</h6>

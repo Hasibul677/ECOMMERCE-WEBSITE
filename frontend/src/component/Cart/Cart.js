@@ -48,11 +48,13 @@ const Cart = () => {
                     cartItems?.map((cart) => (
                       <tr key={cart.product} className="">
                         <td>
-                          <img
-                            className="cartImage"
-                            src={cart.image}
-                            alt="cartItem"
-                          />
+                          <a href={`/product/${cart.product}`}>
+                            <img
+                              className="cartImage"
+                              src={cart.image}
+                              alt="cartItem"
+                            />
+                          </a>
                         </td>
                         <td className="text-nowrap">{cart.name}</td>
                         <td className="text-nowrap">{cart.price} Tk</td>
@@ -98,7 +100,7 @@ const Cart = () => {
             </div>
           </Col>
           <Col md={4} className="px-3">
-            <CartItemCard cartItems={cartItems}/>
+            <CartItemCard cartItems={cartItems} />
           </Col>
         </Row>
       ) : (

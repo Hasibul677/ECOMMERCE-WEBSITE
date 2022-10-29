@@ -10,7 +10,7 @@ const ProductsPriceSlider = ({
   ratings,
 }) => {
   return (
-    <div>
+    <div className="selectItem">
       <Typography className="fw-bold">Price</Typography>
       <Slider
         value={price}

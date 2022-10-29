@@ -40,10 +40,6 @@ const CartItemCard = ({ cartItems }) => {
           <h6>{shippCost.toFixed(2)} Tk</h6>
         </div>
         <div className="d-flex justify-content-between">
-          <h6>Total</h6>
-          <h6>{(amount + shippCost).toFixed(2)} Tk</h6>
-        </div>
-        <div className="d-flex justify-content-between">
           <h6>Discount (5%)</h6>
           <h6>{handleDiscount(amount + shippCost)} Tk</h6>
         </div>

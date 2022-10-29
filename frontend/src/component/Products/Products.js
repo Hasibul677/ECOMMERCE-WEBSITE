@@ -85,7 +85,7 @@ const Products = () => {
           ) : (
             <div>
               <div className="d-flex justify-content-center mt-3">
-                <div className="w-50">
+                <div className="seachWidth">
                   <SearchProduct
                     handleSubmit={handleSubmit}
                     setKeywords={setKeywords}

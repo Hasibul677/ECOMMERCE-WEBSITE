@@ -19,7 +19,7 @@ const Header = () => {
   const alert = useAlert();
   const navigate = useNavigate();
   const { loading, user, isAuthenticated } = useSelector((state) => state.user);
-  const {cartItems} = useSelector(state=> state.cart)
+  const { cartItems } = useSelector((state) => state.cart);
   const [show, setShow] = useState("d-none");
 
   const handleLogout = () => {
@@ -27,7 +27,6 @@ const Header = () => {
     alert.success("Logout!");
     navigate("/");
   };
-
 
   return (
     <div>
@@ -79,7 +78,17 @@ const Header = () => {
                   ABOUT
                 </Link>
               </Nav>
+
               <Nav className="ms-auto">
+                <Link
+                  className="mt-3 mb-1 text-decoration-none cartMenu"
+                  to="/cart"
+                >
+                  <BsCart4 className="fs-2 me-md-5 text-danger" />
+                  <p className="rounded-circle text-white text-center cartItem px-1 pb-3 fs-5">
+                    {cartItems?.length > 0 ? cartItems?.length : 0}
+                  </p>
+                </Link>
                 {isAuthenticated && (
                   <div
                     className="icon-parent"
@@ -98,14 +107,6 @@ const Header = () => {
                           </span>
                         </Link>
                       </div>
-                      <div className="card menu-parent my-2">
-                        <Link to="/profile">
-                          <GiShoppingCart className="fs-3 text-dark" />
-                          <span className="menu-child bg-white text-dark px-2 rounded">
-                            Order
-                          </span>
-                        </Link>
-                      </div>
                       <div className="card menu-parent my-1">
                         <div onClick={handleLogout}>
                           <BiLogOut className="fs-3" />
@@ -118,15 +119,17 @@ const Header = () => {
                   </div>
                 )}
 
-                <Link
-                  className="mt-3 mb-1 text-decoration-none cartMenu"
-                  to="/cart"
-                >
-                  <BsCart4 className="fs-2 me-md-5 text-danger" />
-                  <p className="rounded-circle text-white text-center cartItem px-1 pb-3 fs-5">
-                    {cartItems?.length > 0 ? cartItems?.length : 0}
-                  </p>
-                </Link>
+                {!isAuthenticated && (
+                  <Link
+                    className="mt-3 mb-1 text-decoration-none cartMenu"
+                    to="/cart"
+                  >
+                    <BsCart4 className="fs-2 me-md-5 text-danger" />
+                    <p className="rounded-circle text-white text-center cartItem px-1 pb-3 fs-5">
+                      {cartItems?.length > 0 ? cartItems?.length : 0}
+                    </p>
+                  </Link>
+                )}
 
                 {!isAuthenticated && (
                   <Link className="mt-3 mb-1" to="/login">

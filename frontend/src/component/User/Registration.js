@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./LoginSignUp.css";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import loginImg from "../../images/avatar/login.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaRegUser } from "react-icons/fa";
 import { HiOutlineMail } from "react-icons/hi";
 import { TbLock } from "react-icons/tb";
@@ -15,8 +15,8 @@ import swal from "sweetalert";
 
 const Registration = () => {
   const dispatch = useDispatch();
-  const { loading, error } = useSelector((state) => state.user);
-
+  const { isAuthenticated, loading, error } = useSelector((state) => state.user);
+  const navigate = useNavigate();
   const alert = useAlert();
   const [avatar, setAvatar] = useState(profile);
   const [registerInfo, setRegisterInfo] = useState({
@@ -52,6 +52,7 @@ const Registration = () => {
   const handleRegister = (e) => {
     e.preventDefault();
     dispatch(register(registerInfo));
+
   };
 
   useEffect(() => {
@@ -59,7 +60,10 @@ const Registration = () => {
       alert.error(error);
       dispatch(clearError());
     }
-  }, [dispatch, error, alert]);
+    if (isAuthenticated) {
+      navigate("/profile");
+    }
+  }, [dispatch, error, alert, isAuthenticated, navigate]);
 
   return (
     <div>

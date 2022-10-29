@@ -4,10 +4,10 @@ import { Col, Row } from "react-bootstrap";
 const CartItemCard = () => {
   return (
     <Row className="gx-0">
-      <Col md={8}>
-        
+      <Col md={12}>
+        hello
       </Col>
-      <Col md={4}></Col>
+
     </Row>
   );
 };

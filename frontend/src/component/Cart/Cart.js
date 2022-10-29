@@ -7,6 +7,7 @@ import "./Cart.css";
 import { useSelector, useDispatch } from "react-redux";
 import { addItemToCart, removeItemToCart } from "../../actions/cartAction";
 import { Link } from "react-router-dom";
+import CartItemCard from "./CartItemCard";
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -96,7 +97,9 @@ const Cart = () => {
               </table>
             </div>
           </Col>
-          <Col md={4}></Col>
+          <Col md={4}>
+            <CartItemCard />
+          </Col>
         </Row>
       ) : (
         <div className="minHeight d-flex align-items-center justify-content-center">

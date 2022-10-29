@@ -20,6 +20,7 @@ import ChangePassword from "./component/User/ChangePassword";
 import ForgotPassword from "./component/User/ForgotPassword";
 import ResetPassword from "./component/User/ResetPassword";
 import Cart from "./component/Cart/Cart";
+import Shipping from "./component/Cart/Shipping";
 
 function App() {
   const location = useLocation()
@@ -180,6 +181,16 @@ function App() {
                 <Header />
                 <Cart/>
               </>
+            }
+          />
+          <Route
+            exact
+            path="/shipping"
+            element={
+              <PrivateRoute>
+                <Header />
+                <Shipping/>
+              </PrivateRoute>
             }
           />
        

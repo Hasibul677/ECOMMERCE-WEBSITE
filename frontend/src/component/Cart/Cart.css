@@ -5,3 +5,6 @@
 .delete{
   cursor: pointer;
 }
+.minHeight{
+  min-height: 90vh;
+}

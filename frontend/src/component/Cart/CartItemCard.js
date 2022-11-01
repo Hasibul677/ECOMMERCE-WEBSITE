@@ -21,7 +21,7 @@ const CartItemCard = ({ cartItems }) => {
   const handleDiscount = (total) => {
     return ((5 / 100) * total).toFixed(2);
   };
-
+// router problem not fixed 
   const handleCheckOut = () => {
     if (!isAuthenticated) {
       navigate("/login");

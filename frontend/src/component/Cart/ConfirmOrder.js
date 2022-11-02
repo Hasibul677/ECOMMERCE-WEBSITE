@@ -96,6 +96,10 @@ const ConfirmOrder = () => {
               <h6>{shippingInfo.city}</h6>
             </div>
             <div className="d-flex justify-content-between">
+              <h6>Upazila</h6>
+              <h6>{shippingInfo.upazila}</h6>
+            </div>
+            <div className="d-flex justify-content-between">
               <h6>Post Code</h6>
               <h6>{shippingInfo.postCode}</h6>
             </div>

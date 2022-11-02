@@ -31,8 +31,8 @@ const Cart = () => {
   return (
     <Fragment>
       {cartItems.length !== 0 ? (
-        <Row className="gx-0">
-          <Col md={8} className="px-3">
+        <Row className="gx-0 mt-4 px-3 px-md-5">
+          <Col md={9}>
             <div className="table-responsive">
               <table className="table table-hover text-center">
                 <tbody>
@@ -99,7 +99,7 @@ const Cart = () => {
               </table>
             </div>
           </Col>
-          <Col md={4} className="px-3">
+          <Col md={3} className="ps-md-2">
             <CartItemCard cartItems={cartItems} />
           </Col>
         </Row>

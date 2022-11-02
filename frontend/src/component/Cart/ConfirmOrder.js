@@ -33,7 +33,7 @@ const ConfirmOrder = () => {
       <CheckOutSteps activeStep={1} />
       <Row className="gx-0 px-3 px-md-5">
         {cartItems && (
-          <Col md={8} className="px-3">
+          <Col md={9} className="px-3">
             <div className="table-responsive">
               <h4 className="text-uppercase fs-5 fw-bold text-primary">
                 Your Cart Items:
@@ -73,12 +73,11 @@ const ConfirmOrder = () => {
             </div>
           </Col>
         )}
-        <Col md={4} className="px-2 mt-4">
-          <div className="bg-light pt-3 px-4">
-            <div className="text-center">
-              <h4>Order Summary</h4>
-              <hr className="text-secondary" />
-            </div>
+        <Col md={3} className="px-2 mt-4">
+          <div className="text-center bg-info text-white py-2">
+            <h5 className="text-uppercase fw-bold ">Order Summary</h5>
+          </div>
+          <div className="bg-light pt-2 px-4">
             <div className="d-flex justify-content-between">
               <h6>Name</h6>
               <h6>{user.name}</h6>
@@ -136,7 +135,7 @@ const ConfirmOrder = () => {
           </div>
           <Button
             onClick={handleCheckOut}
-            className="ms-md-auto justify-content-center rounded-pill p-1 px-3 d-flex align-items-center my-3"
+            className="ms-auto rounded-pill p-1 px-3 d-flex align-items-center my-3"
           >
             <SiAmazonpay className="fs-5" />{" "}
             <div className="ms-1">Proceed To Payment</div>

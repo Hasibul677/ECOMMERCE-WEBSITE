@@ -21,12 +21,11 @@ const CartItemCard = ({ cartItems }) => {
   };
 
   return (
-    <Row className="gx-0 mt-4">
-      <Col md={12} className="card shadow py-5 px-4">
-        <div className="text-center">
-          <h4>Checkout Summary</h4>
-          <hr className="text-secondary" />
-        </div>
+    <Row className="gx-0">
+      <div className="text-center bg-info text-white py-2">
+        <h5 className="text-uppercase fw-bold ">Checkout Summary</h5>
+      </div>
+      <Col md={12} className="bg-light py-5 px-4">
         <div className="d-flex justify-content-between">
           <h6>Items</h6>
           <h6>{cartItems.length}</h6>

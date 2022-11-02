@@ -6,20 +6,18 @@ import { useNavigate } from "react-router-dom";
 const CartItemCard = ({ cartItems }) => {
   const navigate = useNavigate();
   const [amount, setAmount] = useState(0);
-  let shippCost = 100;
+  const [quantity, setQuantity] = useState(0);
 
   useEffect(() => {
     setAmount(
       cartItems.reduce((acc, obj) => acc + obj.quantity * obj.price, 0)
     );
+    setQuantity(cartItems.reduce((acc, obj) => acc + obj.quantity, 0));
   }, [cartItems]);
 
-  const handleDiscount = (total) => {
-    return ((5 / 100) * total).toFixed(2);
-  };
-// router problem not fixed 
+  // router problem not fixed
   const handleCheckOut = () => {
-    navigate("/login?redirect=/shipping")
+    navigate("/login?redirect=/shipping");
   };
 
   return (
@@ -31,24 +29,15 @@ const CartItemCard = ({ cartItems }) => {
         </div>
         <div className="d-flex justify-content-between">
           <h6>Items</h6>
-          <h6>( {cartItems.length} )</h6>
+          <h6>{cartItems.length}</h6>
+        </div>
+        <div className="d-flex justify-content-between">
+          <h6>Quantity</h6>
+          <h6>{quantity}</h6>
         </div>
         <div className="d-flex justify-content-between">
           <h6> Amount</h6>
           <h6>{amount.toFixed(2)} Tk</h6>
-        </div>
-        <div className="d-flex justify-content-between">
-          <h6>Shipping</h6>
-          <h6>{shippCost.toFixed(2)} Tk</h6>
-        </div>
-        <div className="d-flex justify-content-between">
-          <h6>Discount (5%)</h6>
-          <h6>{handleDiscount(amount + shippCost)} Tk</h6>
-        </div>
-        <hr className="text-secondary" />
-        <div className="d-flex justify-content-between">
-          <h6>Payment</h6>
-          <h6>{amount + shippCost - handleDiscount(amount + shippCost)} Tk</h6>
         </div>
         <Button
           onClick={handleCheckOut}

@@ -6,15 +6,13 @@ import { useNavigate } from "react-router-dom";
 const CartItemCard = ({ cartItems }) => {
   const navigate = useNavigate();
   const [amount, setAmount] = useState(0);
-  const [payment, setPayment] = useState(0);
   let shippCost = 100;
 
   useEffect(() => {
     setAmount(
       cartItems.reduce((acc, obj) => acc + obj.quantity * obj.price, 0)
     );
-    setPayment(amount + shippCost - handleDiscount(amount + shippCost));
-  }, [cartItems, amount, shippCost]);
+  }, [cartItems]);
 
   const handleDiscount = (total) => {
     return ((5 / 100) * total).toFixed(2);

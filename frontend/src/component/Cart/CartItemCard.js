@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Button, Col, Row } from "react-bootstrap";
 import { SiAmazonpay } from "react-icons/si";
-import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 const CartItemCard = ({ cartItems }) => {
-  const { isAuthenticated } = useSelector((state) => state.user);
   const navigate = useNavigate();
   const [amount, setAmount] = useState(0);
   const [payment, setPayment] = useState(0);
@@ -23,11 +21,7 @@ const CartItemCard = ({ cartItems }) => {
   };
 // router problem not fixed 
   const handleCheckOut = () => {
-    if (!isAuthenticated) {
-      navigate("/login");
-    } else {
-      navigate("/shipping");
-    }
+    navigate("/login?redirect=/shipping")
   };
 
   return (

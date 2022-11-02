@@ -1,5 +1,5 @@
 import "./App.css";
-import { Routes, Route, Navigate, useLocation } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Header from "./component/layout/Header/Header";
 import webFont from "webfontloader";
 import { useEffect } from "react";
@@ -21,10 +21,10 @@ import ForgotPassword from "./component/User/ForgotPassword";
 import ResetPassword from "./component/User/ResetPassword";
 import Cart from "./component/Cart/Cart";
 import Shipping from "./component/Cart/Shipping";
+import PrivateRoute from "./component/Route/PrivateRoute";
 
 function App() {
-  const location = useLocation()
-  const { loading, isAuthenticated } = useSelector((state) => state.user);
+  const { loading } = useSelector((state) => state.user);
 
   useEffect(() => {
     webFont.load({
@@ -33,11 +33,6 @@ function App() {
 
     store.dispatch(loadUser());
   }, []);
-
-  const PrivateRoute = ({children}) => {
- 
-    return !loading && isAuthenticated ? children : <Navigate to="/login" replace state={{ location }}/>;
-  };
 
   return (
     <div>
@@ -123,77 +118,87 @@ function App() {
 
           <Route
             exact
-            path="/profile"
-            element={
-              <PrivateRoute>
-                <Header />
-                <Profile />
-                <Footer />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            exact
-            path="/me/update"
-            element={
-              <PrivateRoute>
-                <Header />
-                <UpdateProfile/>
-                <Footer />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            exact
-            path="/changePassword"
-            element={
-              <PrivateRoute>
-                <Header />
-                <ChangePassword/>
-              </PrivateRoute>
-            }
-          />
-          <Route
-            exact
             path="/password/forgot"
             element={
               <>
                 <Header />
-                <ForgotPassword/>
+                <ForgotPassword />
               </>
             }
           />
+
           <Route
             exact
             path="/password/reset/:token"
             element={
               <>
                 <Header />
-                <ResetPassword/>
+                <ResetPassword />
               </>
             }
           />
+
+          <Route exact path="/me/update" element={<PrivateRoute />}>
+            <Route
+              exact
+              path="/me/update"
+              element={
+                <>
+                  <Header />
+                  <UpdateProfile />
+                  <Footer />
+                </>
+              }
+            />
+          </Route>
+          <Route exact path="/profile" element={<PrivateRoute />}>
+            <Route
+              exact
+              path="/profile"
+              element={
+                <>
+                  <Header />
+                  <Profile />
+                  <Footer />
+                </>
+              }
+            />
+          </Route>
+          <Route exact path="/changePassword" element={<PrivateRoute />}>
+            <Route
+              exact
+              path="/changePassword"
+              element={
+                <>
+                  <Header />
+                  <ChangePassword />
+                </>
+              }
+            />
+          </Route>
           <Route
             exact
             path="/cart"
             element={
               <>
                 <Header />
-                <Cart/>
+                <Cart />
               </>
             }
           />
-          <Route
-            exact
-            path="/shipping"
-            element={
-              <PrivateRoute>
-                <Header />
-                <Shipping/>
-              </PrivateRoute>
-            }
-          />
-       
+          <Route exact path="/shipping" element={<PrivateRoute />}>
+            <Route
+              exact
+              path="/shipping"
+              element={
+                <>
+                  <Header />
+                  <Shipping />
+                </>
+              }
+            />
+          </Route>
+
           <Route
             path="*"
             element={

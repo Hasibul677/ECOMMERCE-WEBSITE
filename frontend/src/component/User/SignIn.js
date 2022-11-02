@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./LoginSignUp.css";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import loginImg from "../../images/avatar/login.png";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { HiOutlineMail } from "react-icons/hi";
 import { TbLock } from "react-icons/tb";
 import { useDispatch, useSelector } from "react-redux";
@@ -12,6 +12,7 @@ import Loader from "../layout/Loader/Loader";
 
 const SignIn = () => {
   const dispatch = useDispatch();
+  const location = useLocation();
   const alert = useAlert();
   const navigate = useNavigate();
   const { loading, error, isAuthenticated } = useSelector(
@@ -31,6 +32,7 @@ const SignIn = () => {
     setLoginInfo(info);
   };
 
+  const redirect = location.search ? location.search.split("=")[1] : "/profile"
 
   useEffect(() => {
     if (error) {
@@ -38,9 +40,9 @@ const SignIn = () => {
       dispatch(clearError());
     }
     if (isAuthenticated) {
-      navigate("/profile");
+      navigate(redirect);
     }
-  }, [dispatch, error, alert, isAuthenticated, navigate]);
+  }, [dispatch, error, alert, isAuthenticated, navigate, redirect]);
 
   const handleLogin = (e) => {
     e.preventDefault();

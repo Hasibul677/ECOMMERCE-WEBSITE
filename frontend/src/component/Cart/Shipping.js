@@ -4,8 +4,16 @@ import { FaCity, FaGlobeAfrica, FaHome } from "react-icons/fa";
 import { GoLocation } from "react-icons/go";
 import { BsPhone } from "react-icons/bs";
 import MetaDeta from "../layout/MetaDeta";
+import CheckOutSteps from "./CheckOutSteps";
+import { useAlert } from "react-alert";
+import { useDispatch } from "react-redux";
+import { saveShippingInfo } from "../../actions/cartAction";
+import { useNavigate } from "react-router-dom";
 
 const Shipping = () => {
+  const alert = useAlert();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [shippingInfo, setShippingInfo] = useState({
     address: "",
     city: "",
@@ -20,10 +28,20 @@ const Shipping = () => {
     });
   };
 
-  console.log(shippingInfo);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (shippingInfo?.phone?.length < 11 || shippingInfo?.phone?.length > 11) {
+      alert.error("Number should be 11 digit");
+      return;
+    }
+    dispatch(saveShippingInfo(shippingInfo));
+    navigate("/order/confirm");
+  };
+
   return (
     <Row className="gx-0">
       <MetaDeta title={"Shipping Page"} />
+      <CheckOutSteps activeStep={0} />
       <Col md={4}></Col>
       <Col md={5} className="px-3">
         <h5
@@ -32,7 +50,7 @@ const Shipping = () => {
         >
           Shipping Details
         </h5>
-        <Form className="formWidth">
+        <Form className="formWidth" onSubmit={handleSubmit}>
           <Form.Group className="mb-2">
             <div className="inputparent">
               <Form.Control

@@ -22,6 +22,7 @@ import ResetPassword from "./component/User/ResetPassword";
 import Cart from "./component/Cart/Cart";
 import Shipping from "./component/Cart/Shipping";
 import PrivateRoute from "./component/Route/PrivateRoute";
+import ConfirmOrder from "./component/Cart/ConfirmOrder";
 
 function App() {
   const { loading } = useSelector((state) => state.user);
@@ -194,6 +195,18 @@ function App() {
                 <>
                   <Header />
                   <Shipping />
+                </>
+              }
+            />
+          </Route>
+          <Route exact path="/order/confirm" element={<PrivateRoute />}>
+            <Route
+              exact
+              path="/order/confirm"
+              element={
+                <>
+                  <Header />
+                  <ConfirmOrder />
                 </>
               }
             />
